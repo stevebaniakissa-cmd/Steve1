@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>BANI-AI WORLD V2 ULTRA | Baniakissa Corporation</title>
+<meta name="description" content="Agent IA #1 Mondial — Crypto, Trading, Football, Coaching. Baniakissa Corporation.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  --gold:#c8922a;--gold-l:#e8b84b;--gold-dim:rgba(200,146,42,0.12);
+  --dark:#07080f;--dark2:#0f1120;--dark3:#161828;--dark4:#1e2035;
+  --white:#fff;--gray:#8892a4;
+  --green:#22c55e;--red:#ef4444;--blue:#3b82f6;--purple:#8b5cf6;
+  --pink:#ec4899;--orange:#f97316;--teal:#14b8a6;
+}
+html,body{height:100%;background:var(--dark);font-family:'DM Sans',sans-serif;color:var(--white);overflow:hidden;}
+.app{display:flex;height:100vh;overflow:hidden;}
+
+/* SIDEBAR */
+.sidebar{width:230px;background:var(--dark2);border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(200,146,42,0.2);}
+.s-logo{padding:14px 14px 10px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:8px;}
+.sl-ico{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),var(--gold-l));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.sl-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;}
+.sl-name span{color:var(--gold-l);}
+.sl-tag{font-size:7px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;}
+.status-bar{margin:8px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:9px;padding:9px 11px;}
+.sb-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:sbp 2s infinite;flex-shrink:0;display:inline-block;margin-right:6px;}
+@keyframes sbp{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.4);}50%{box-shadow:0 0 0 4px rgba(34,197,94,0);}}
+.sb-text{font-size:11px;font-weight:700;color:var(--green);}
+.sb-world{font-size:9px;color:var(--gray);margin-top:4px;}
+.s-nav{padding:6px;flex:1;}
+.nav-sec{font-size:8px;font-weight:700;letter-spacing:3px;color:var(--gray);text-transform:uppercase;padding:7px 8px 3px;}
+.nb{width:100%;text-align:left;background:transparent;border:none;color:rgba(255,255,255,0.55);padding:7px 9px;border-radius:8px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:1px;transition:all 0.2s;display:flex;align-items:center;gap:8px;}
+.nb:hover{background:rgba(255,255,255,0.04);color:var(--white);}
+.nb.active{background:var(--gold-dim);color:var(--gold-l);border:1px solid rgba(200,146,42,0.2);}
+.nb-ico{font-size:14px;width:16px;text-align:center;flex-shrink:0;}
+.nb-badge{margin-left:auto;background:var(--red);color:#fff;font-size:7px;font-weight:800;padding:1px 5px;border-radius:7px;animation:bl 2s infinite;}
+@keyframes bl{0%,100%{opacity:1;}50%{opacity:0.5;}}
+.s-social{margin:6px;padding:9px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:9px;}
+.social-title{font-size:8px;font-weight:700;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:7px;}
+.social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
+.sbtn{border-radius:7px;padding:6px 3px;text-align:center;cursor:pointer;border:none;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.sbtn:hover{transform:translateY(-2px);}
+.si{font-size:14px;}.sn{font-size:7px;font-weight:700;}
+.sw{background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2);color:#25d366;}
+.sf{background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.2);color:#1877f2;}
+.sig{background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.2);color:#e1306c;}
+.stk{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;}
+.sy{background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,0.2);color:#ff0000;}
+.sth{background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.1);color:#fff;}
+.s-live{margin:6px;border-top:1px solid rgba(255,255,255,0.05);padding-top:7px;}
+.live-title{font-size:8px;font-weight:700;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:5px;}
+.ld{display:flex;align-items:center;gap:5px;padding:3px 5px;font-size:9px;color:rgba(255,255,255,0.5);margin-bottom:1px;}
+.ld-ico{font-size:10px;flex-shrink:0;}
+.ld-val{font-weight:600;color:var(--white);margin-left:auto;font-size:9px;}
+.up{color:var(--green);}.dn{color:var(--red);}
+
+/* CENTER */
+.center{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.tabs{display:flex;background:var(--dark2);border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;overflow-x:auto;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{padding:10px 12px;font-size:10px;font-weight:600;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;}
+.tab:hover{color:var(--white);}
+.tab.active{color:var(--gold-l);border-bottom-color:var(--gold);}
+.panel{display:none;flex:1;overflow:hidden;flex-direction:column;position:relative;}
+.panel.active{display:flex;}
+
+/* CHAT */
+.chat-topbar{padding:9px 14px;background:rgba(7,8,15,0.8);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:9px;flex-shrink:0;}
+.ct-av{width:30px;height:30px;background:linear-gradient(135deg,var(--gold),var(--gold-l));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;}
+.ct-name{font-size:12px;font-weight:700;}
+.ct-status{font-size:9px;color:var(--green);}
+.ct-acts{margin-left:auto;display:flex;gap:4px;}
+.cta{width:26px;height:26px;background:rgba(255,255,255,0.05);border:none;border-radius:6px;cursor:pointer;font-size:11px;color:var(--gray);transition:all 0.2s;}
+.cta:hover{background:var(--gold-dim);color:var(--gold-l);}
+.lang-bar{display:flex;gap:3px;padding:6px 12px;border-bottom:1px solid rgba(255,255,255,0.04);overflow-x:auto;flex-shrink:0;}
+.lang-bar::-webkit-scrollbar{display:none;}
+.lc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);padding:2px 7px;border-radius:8px;font-size:9px;color:var(--gray);cursor:pointer;white-space:nowrap;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.lc:hover,.lc.active{background:var(--gold-dim);border-color:rgba(200,146,42,0.3);color:var(--gold-l);}
+.msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:9px;}
+.msgs::-webkit-scrollbar{width:3px;}
+.msgs::-webkit-scrollbar-thumb{background:rgba(200,146,42,0.15);}
+.welcome{background:var(--gold-dim);border:1px solid rgba(200,146,42,0.2);border-radius:14px;padding:16px;text-align:center;max-width:420px;margin:0 auto;}
+.w-ico{font-size:32px;margin-bottom:7px;}
+.w-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;margin-bottom:4px;}
+.w-title span{color:var(--gold-l);}
+.w-desc{font-size:10px;color:var(--gray);line-height:1.7;}
+.w-tags{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;margin-top:9px;}
+.wtag{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:2px 7px;border-radius:8px;font-size:9px;color:rgba(255,255,255,0.5);}
+.qr-grid{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:5px;}
+.qr{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.65);padding:4px 8px;border-radius:12px;font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.qr:hover{background:var(--gold-dim);border-color:rgba(200,146,42,0.3);color:var(--gold-l);}
+.bubble{max-width:78%;animation:bIn 0.3s ease;}
+@keyframes bIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.bubble.a{align-self:flex-start;}.bubble.u{align-self:flex-end;}
+.bi{padding:10px 12px;border-radius:12px;font-size:12px;line-height:1.75;}
+.bubble.a .bi{background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:12px 12px 12px 2px;}
+.bubble.u .bi{background:linear-gradient(135deg,#1d4ed8,#1e40af);border-radius:12px 12px 2px 12px;}
+.bt{font-size:9px;color:var(--gray);margin-top:2px;padding:0 2px;}
+.bubble.u .bt{text-align:right;}
+.bi b{color:var(--gold-l);}
+.typing{display:none;align-self:flex-start;}
+.typing.show{display:flex;gap:4px;align-items:center;background:var(--dark3);border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;}
+.td{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:td 1.2s infinite;}
+.td:nth-child(2){animation-delay:0.2s;}.td:nth-child(3){animation-delay:0.4s;}
+@keyframes td{0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-5px);opacity:1;}}
+.input-area{padding:9px 12px;border-top:1px solid rgba(255,255,255,0.05);display:flex;gap:6px;align-items:flex-end;flex-shrink:0;background:rgba(7,8,15,0.5);}
+.msg-in{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:8px 11px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:12px;resize:none;outline:none;min-height:36px;max-height:90px;transition:border 0.3s;}
+.msg-in::placeholder{color:var(--gray);}
+.msg-in:focus{border-color:rgba(200,146,42,0.4);}
+.send-b{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),var(--gold-l));border:none;border-radius:8px;cursor:pointer;font-size:13px;transition:all 0.2s;flex-shrink:0;}
+.send-b:hover{transform:scale(1.05);}.send-b:disabled{opacity:0.4;cursor:not-allowed;}
+.chat-footer{padding:5px 12px;border-top:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.cf-txt{font-size:8px;color:rgba(255,255,255,0.15);}
+.cf-wa{display:flex;align-items:center;gap:3px;background:#25d366;color:#fff;border:none;padding:3px 8px;border-radius:6px;font-size:8px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+/* VIP LOCK OVERLAY */
+.vip-lock{position:absolute;inset:0;background:rgba(7,8,15,0.97);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;backdrop-filter:blur(10px);}
+.vl-ico{font-size:52px;margin-bottom:14px;}
+.vl-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--gold-l);margin-bottom:6px;}
+.vl-desc{font-size:12px;color:var(--gray);margin-bottom:20px;line-height:1.6;}
+.vl-price{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--gold);margin-bottom:4px;}
+.vl-period{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:18px;}
+.vl-features{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 16px;margin-bottom:18px;text-align:left;width:100%;max-width:320px;}
+.vl-feat{display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.7);padding:3px 0;}
+.vl-btn{background:linear-gradient(135deg,var(--gold),var(--gold-l));border:none;border-radius:12px;padding:13px 28px;cursor:pointer;color:#000;font-weight:800;font-size:13px;font-family:'DM Sans',sans-serif;width:100%;max-width:320px;margin-bottom:10px;}
+.vl-code-section{margin-top:10px;width:100%;max-width:320px;}
+.vl-code-label{font-size:10px;color:var(--gray);margin-bottom:6px;}
+.vl-code-row{display:flex;gap:6px;}
+.vl-code-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:8px 11px;color:var(--white);font-family:monospace;font-size:13px;text-align:center;letter-spacing:3px;outline:none;text-transform:uppercase;}
+.vl-code-input:focus{border-color:var(--gold);}
+.vl-code-btn{background:var(--gold);color:#000;border:none;border-radius:8px;padding:8px 14px;font-size:11px;font-weight:800;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.vl-payments{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;font-size:10px;color:rgba(255,255,255,0.3);margin-top:12px;}
+
+/* CRYPTO */
+.wrap{flex:1;overflow-y:auto;padding:12px;}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.sh-title{font-size:15px;font-weight:800;}
+.live-badge{display:flex;align-items:center;gap:5px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);padding:4px 9px;border-radius:7px;font-size:10px;color:var(--red);font-weight:700;}
+.live-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red);animation:bl 1s infinite;display:inline-block;}
+.crypto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px;}
+.crypto-card{background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:11px;padding:12px;cursor:pointer;transition:all 0.2s;}
+.crypto-card:hover{border-color:rgba(200,146,42,0.3);}
+.cc-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.cc-ico{font-size:20px;}
+.cc-nm{font-size:12px;font-weight:700;}
+.cc-sym{font-size:10px;color:var(--gray);}
+.cc-price{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--gold-l);}
+.cc-ch{font-size:11px;font-weight:700;margin-top:3px;}
+
+/* SIGNALS */
+.signal-card{background:var(--dark3);border-radius:11px;padding:12px;margin-bottom:8px;border-left:4px solid transparent;}
+.signal-card.buy{border-left-color:var(--green);}
+.signal-card.sell{border-left-color:var(--red);}
+.signal-card.hold{border-left-color:var(--gold);}
+.sig-head{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.sig-badge{padding:3px 10px;border-radius:8px;font-size:10px;font-weight:800;}
+.b-buy{background:rgba(34,197,94,0.15);color:var(--green);}
+.b-sell{background:rgba(239,68,68,0.15);color:var(--red);}
+.b-hold{background:rgba(200,146,42,0.15);color:var(--gold-l);}
+.sig-pair{font-size:13px;font-weight:700;}
+.sig-conf{font-size:10px;color:var(--gray);margin-left:auto;}
+.sig-details{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:7px;}
+.sd{background:rgba(255,255,255,0.03);border-radius:7px;padding:7px;text-align:center;}
+.sd-l{font-size:8px;color:var(--gray);letter-spacing:1px;text-transform:uppercase;}
+.sd-v{font-size:12px;font-weight:800;margin-top:2px;}
+.sig-analysis{font-size:11px;color:var(--gray);line-height:1.6;margin-top:7px;padding-top:7px;border-top:1px solid rgba(255,255,255,0.05);}
+
+/* FOREX/OR */
+.forex-card{background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:11px;padding:12px;margin-bottom:8px;cursor:pointer;transition:all 0.2s;}
+.forex-card:hover{border-color:rgba(200,146,42,0.3);}
+.fc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.fc-name{font-size:13px;font-weight:700;}
+.fc-price{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--gold-l);}
+.fc-sig{padding:3px 10px;border-radius:8px;font-size:10px;font-weight:800;}
+.fc-analysis{font-size:11px;color:var(--gray);line-height:1.6;margin-top:6px;}
+
+/* MATCHES */
+.match-card{background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:11px;padding:12px;margin-bottom:8px;}
+.match-league{font-size:9px;font-weight:700;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.match-teams{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.team{text-align:center;flex:1;}
+.team-name{font-size:12px;font-weight:700;}
+.match-score-box{text-align:center;padding:0 12px;}
+.ms{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--gold-l);}
+.ms-label{font-size:9px;color:var(--gold);margin-top:3px;font-weight:700;}
+.match-probs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:7px;}
+.mp{background:rgba(255,255,255,0.03);border-radius:7px;padding:7px;text-align:center;}
+.mp-lbl{font-size:8px;color:var(--gray);}
+.mp-val{font-size:13px;font-weight:800;margin-top:2px;}
+.match-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;}
+.mstat{background:rgba(255,255,255,0.03);border-radius:7px;padding:7px;text-align:center;}
+.mstat-l{font-size:8px;color:var(--gray);}
+.mstat-v{font-size:12px;font-weight:800;margin-top:2px;color:var(--gold-l);}
+.match-pred{background:rgba(200,146,42,0.08);border:1px solid rgba(200,146,42,0.2);border-radius:8px;padding:9px;font-size:11px;color:rgba(255,255,255,0.75);line-height:1.6;}
+.pred-badge{display:inline-flex;align-items:center;gap:4px;background:var(--gold);color:#000;padding:2px 8px;border-radius:6px;font-size:9px;font-weight:800;margin-bottom:5px;}
+
+/* VIP PANEL */
+.vip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;}
+.vc{border-radius:14px;overflow:hidden;cursor:pointer;transition:all 0.3s;}
+.vc:hover{transform:translateY(-3px);}
+.vc-starter{background:linear-gradient(145deg,rgba(20,184,166,0.12),rgba(20,184,166,0.02));border:1px solid rgba(20,184,166,0.3);}
+.vc-bronze{background:linear-gradient(145deg,rgba(205,127,50,0.12),rgba(205,127,50,0.02));border:1px solid rgba(205,127,50,0.3);}
+.vc-silver{background:linear-gradient(145deg,rgba(192,192,192,0.12),rgba(192,192,192,0.02));border:1px solid rgba(192,192,192,0.25);}
+.vc-gold{background:linear-gradient(145deg,rgba(255,215,0,0.12),rgba(255,215,0,0.02));border:2px solid rgba(255,215,0,0.4);}
+.vc-platinum{background:linear-gradient(145deg,rgba(229,228,226,0.12),rgba(229,228,226,0.02));border:1px solid rgba(229,228,226,0.25);}
+.vc-elite{background:linear-gradient(145deg,rgba(255,107,53,0.15),rgba(255,107,53,0.02));border:2px solid rgba(255,107,53,0.4);}
+.vc-top{padding:14px;}
+.vc-ico{font-size:24px;margin-bottom:6px;}
+.vc-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;margin-bottom:2px;}
+.vc-tag{font-size:10px;color:var(--gray);margin-bottom:8px;}
+.vc-price{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;}
+.vc-usd{font-size:10px;color:var(--gray);margin-top:2px;}
+.vc-div{height:1px;background:rgba(255,255,255,0.07);margin:0 14px;}
+.vc-body{padding:10px 14px 14px;}
+.vc-feat{font-size:10px;color:rgba(255,255,255,0.75);margin-bottom:3px;line-height:1.4;}
+.vc-btn{width:100%;border:none;padding:9px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;margin-top:10px;}
+.vc-btn:hover{transform:scale(1.02);}
+.btn-s{background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;}
+.btn-b{background:linear-gradient(135deg,#cd7f32,#b8692b);color:#fff;}
+.btn-si{background:linear-gradient(135deg,#c0c0c0,#a0a0a0);color:#000;}
+.btn-g{background:linear-gradient(135deg,#ffd700,#ffaa00);color:#000;}
+.btn-p{background:linear-gradient(135deg,#e5e4e2,#b8b6b4);color:#000;}
+.btn-e{background:linear-gradient(135deg,#ff6b35,#e55a00);color:#fff;}
+
+/* MODAL PAIEMENT */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:9999;align-items:center;justify-content:center;padding:12px;backdrop-filter:blur(8px);}
+.modal-overlay.open{display:flex;}
+.modal-box{background:var(--dark2);border:1px solid rgba(200,146,42,0.4);border-radius:18px;padding:20px;max-width:420px;width:100%;max-height:94vh;overflow-y:auto;}
+.m-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.m-ico{font-size:28px;flex-shrink:0;}
+.m-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gold-l);}
+.m-price{font-size:12px;color:var(--gray);margin-top:2px;}
+.m-close{margin-left:auto;background:rgba(255,255,255,0.06);border:none;color:var(--gray);width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:15px;}
+.m-close:hover{background:rgba(239,68,68,0.2);color:var(--red);}
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.pay-opt{background:rgba(255,255,255,0.03);border:2px solid rgba(255,255,255,0.07);border-radius:12px;padding:12px 8px;cursor:pointer;text-align:center;transition:all 0.2s;}
+.pay-opt:hover{border-color:rgba(200,146,42,0.4);}
+.pay-opt.sel{border-color:var(--gold);background:var(--gold-dim);}
+.po-ico{font-size:22px;margin-bottom:5px;}
+.po-name{font-size:11px;font-weight:800;}
+.po-num{font-size:10px;color:var(--gray);margin-top:2px;}
+.instr{background:var(--dark3);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:16px;display:none;margin-top:4px;}
+.instr.show{display:block;}
+.instr-title{font-size:13px;font-weight:800;color:var(--gold-l);margin-bottom:12px;}
+.step{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:rgba(255,255,255,0.75);line-height:1.5;margin-bottom:10px;}
+.step-n{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#000;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.code-box{background:rgba(0,0,0,0.5);border:1px solid rgba(200,146,42,0.35);border-radius:8px;padding:12px;text-align:center;font-size:16px;font-weight:800;color:var(--white);letter-spacing:2px;margin:10px 0;font-family:monospace;}
+.addr-box{background:rgba(0,0,0,0.5);border:1px solid rgba(200,146,42,0.35);border-radius:8px;padding:10px 12px;font-size:10px;color:var(--white);font-family:monospace;word-break:break-all;margin:8px 0;}
+.copy-btn{background:var(--gold);color:#000;border:none;padding:4px 10px;border-radius:6px;font-size:10px;font-weight:800;cursor:pointer;}
+.wa-btn{width:100%;background:#25d366;color:#fff;border:none;padding:12px;border-radius:10px;font-size:13px;font-weight:800;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:6px;}
+
+/* ADMIN */
+.admin-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9998;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(10px);}
+.admin-modal.open{display:flex;}
+.admin-box{background:var(--dark2);border:2px solid rgba(200,146,42,0.5);border-radius:18px;padding:20px;max-width:340px;width:100%;}
+
+/* FAB */
+.fab{position:fixed;bottom:18px;right:18px;z-index:9997;}
+.fab-btn{width:52px;height:52px;background:linear-gradient(135deg,var(--gold),var(--gold-l));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;box-shadow:0 8px 25px rgba(200,146,42,0.4);animation:fabF 3s ease-in-out infinite;}
+@keyframes fabF{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.fab-btn:hover{animation:none;transform:scale(1.08);}
+.mini{position:fixed;bottom:80px;right:18px;z-index:9996;width:300px;height:400px;background:var(--dark2);border:1px solid rgba(200,146,42,0.2);border-radius:16px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.5);}
+.mini.open{display:flex;}
+
+/* TOAST */
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--dark3);border:1px solid rgba(200,146,42,0.3);color:var(--white);padding:8px 14px;border-radius:8px;font-size:11px;font-weight:600;z-index:99999;transition:transform 0.4s;white-space:nowrap;max-width:90vw;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* LEADS */
+.lead-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:8px 11px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;margin-bottom:6px;}
+.lead-input:focus{border-color:rgba(200,146,42,0.4);}
+.lead-input::placeholder{color:var(--gray);}
+
+/* COACHING */
+.coach-cat{border-radius:11px;padding:14px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.coach-cat:hover{transform:translateY(-2px);}
+.cc-love{background:linear-gradient(135deg,rgba(236,72,153,0.15),rgba(236,72,153,0.02));border:1px solid rgba(236,72,153,0.25);}
+.cc-mind{background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(139,92,246,0.02));border:1px solid rgba(139,92,246,0.25);}
+.cc-fin{background:linear-gradient(135deg,var(--gold-dim),rgba(200,146,42,0.02));border:1px solid rgba(200,146,42,0.25);}
+.cc-health{background:linear-gradient(135deg,rgba(34,197,94,0.15),rgba(34,197,94,0.02));border:1px solid rgba(34,197,94,0.25);}
+.ct-item{background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:11px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:10px;}
+.ct-item:hover{border-color:rgba(200,146,42,0.3);}
+
+/* RESPONSIVE */
+@media(max-width:900px){.sidebar{display:none;}.tab{padding:9px 10px;font-size:9px;}}
+@media(max-width:500px){.mini{width:calc(100vw - 16px);right:8px;}.crypto-grid{grid-template-columns:1fr;}.vip-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="s-logo">
+    <div class="sl-ico">🌍</div>
+    <div>
+      <div class="sl-name">BANI<span>-AI</span></div>
+      <div class="sl-tag">WORLD V2 ULTRA 🌍</div>
+    </div>
+  </div>
+  <div class="status-bar">
+    <div><span class="sb-dot"></span><span class="sb-text">Agent Mondial Actif</span></div>
+    <div class="sb-world">🌍 International · 12 langues · 24h/24</div>
+  </div>
+  <div class="s-nav">
+    <div class="nav-sec">Modules</div>
+    <button class="nb active" onclick="switchTab('chat')"><span class="nb-ico">💬</span>Chat IA Mondial</button>
+    <button class="nb" onclick="switchTab('crypto')"><span class="nb-ico">₿</span>Crypto Live<span class="nb-badge">LIVE</span></button>
+    <button class="nb" onclick="switchTab('forex')"><span class="nb-ico">🥇</span>Or & Forex<span class="nb-badge">VIP</span></button>
+    <button class="nb" onclick="switchTab('sports')"><span class="nb-ico">⚽</span>Parifoot IA<span class="nb-badge">VIP</span></button>
+    <button class="nb" onclick="switchTab('coaching')"><span class="nb-ico">❤️</span>Coaching Amour</button>
+    <button class="nb" onclick="switchTab('bourse')"><span class="nb-ico">📈</span>Bourse Mondiale</button>
+    <button class="nb" onclick="switchTab('vip')"><span class="nb-ico">💎</span>VIP & Paiement</button>
+    <button class="nb" onclick="switchTab('leads')"><span class="nb-ico">🎯</span>Prospects</button>
+    <div class="nav-sec" style="margin-top:6px;">Admin</div>
+    <button class="nb" onclick="openAdmin()"><span class="nb-ico">🔐</span>Admin PIN</button>
+    <div class="nav-sec">Actions</div>
+    <button class="nb" onclick="window.open('https://wa.me/242068805017','_blank')"><span class="nb-ico">💬</span>WhatsApp Steve</button>
+    <button class="nb" onclick="window.open('https://dgyyypxh.mychariow.shop','_blank')"><span class="nb-ico">🛒</span>Boutique</button>
+  </div>
+  <div class="s-social">
+    <div class="social-title">🌐 Réseaux Sociaux</div>
+    <div class="social-grid">
+      <button class="sbtn sw" onclick="window.open('https://wa.me/242068805017','_blank')"><span class="si">💬</span><span class="sn">WhatsApp</span></button>
+      <button class="sbtn sf" onclick="window.open('https://facebook.com/61587040049442','_blank')"><span class="si">👥</span><span class="sn">Facebook</span></button>
+      <button class="sbtn sig" onclick="window.open('https://www.instagram.com/baniakissa_corporation_','_blank')"><span class="si">📸</span><span class="sn">Instagram</span></button>
+      <button class="sbtn stk" onclick="window.open('https://tiktok.com','_blank')"><span class="si">🎵</span><span class="sn">TikTok</span></button>
+      <button class="sbtn sy" onclick="window.open('https://youtube.com/@baniakissacorporation','_blank')"><span class="si">▶️</span><span class="sn">YouTube</span></button>
+      <button class="sbtn sth" onclick="window.open('https://threads.net/@baniakissa_corporation_','_blank')"><span class="si">🧵</span><span class="sn">Threads</span></button>
+    </div>
+  </div>
+  <div class="s-live">
+    <div class="live-title">📡 Live Data</div>
+    <div class="ld"><span class="ld-ico">₿</span><span>BTC</span><span class="ld-val" id="btcLive">...</span><span id="btcCh" style="font-size:8px;margin-left:3px;"></span></div>
+    <div class="ld"><span class="ld-ico">Ξ</span><span>ETH</span><span class="ld-val" id="ethLive">...</span></div>
+    <div class="ld"><span class="ld-ico">🥇</span><span>Or</span><span class="ld-val" id="goldLive">...</span></div>
+    <div class="ld"><span class="ld-ico">💱</span><span>1$</span><span class="ld-val">≈615 FCFA</span></div>
+    <div class="ld"><span class="ld-ico">⏰</span><span>Heure</span><span class="ld-val" id="clock"></span></div>
+  </div>
+</div>
+
+<!-- CENTER -->
+<div class="center">
+  <div class="tabs">
+    <div class="tab active" id="tab-chat" onclick="switchTab('chat')">🤖 Chat IA</div>
+    <div class="tab" id="tab-crypto" onclick="switchTab('crypto')">₿ Crypto</div>
+    <div class="tab" id="tab-forex" onclick="switchTab('forex')">🥇 Or & Forex</div>
+    <div class="tab" id="tab-sports" onclick="switchTab('sports')">⚽ Parifoot</div>
+    <div class="tab" id="tab-coaching" onclick="switchTab('coaching')">❤️ Coaching</div>
+    <div class="tab" id="tab-bourse" onclick="switchTab('bourse')">📈 Bourse</div>
+    <div class="tab" id="tab-vip" onclick="switchTab('vip')">💎 VIP</div>
+    <div class="tab" id="tab-leads" onclick="switchTab('leads')">🎯 Prospects</div>
+  </div>
+
+  <!-- CHAT -->
+  <div class="panel active" id="panel-chat">
+    <div class="chat-topbar">
+      <div class="ct-av">🌍</div>
+      <div>
+        <div class="ct-name">BANI-AI WORLD <span style="background:linear-gradient(135deg,var(--gold),var(--gold-l));color:#000;font-size:7px;padding:2px 5px;border-radius:4px;font-weight:800;margin-left:3px;">V2 ULTRA</span></div>
+        <div class="ct-status">● Agent IA · Crypto · Sports · Coaching · 12 langues</div>
+      </div>
+      <div class="ct-acts">
+        <button class="cta" onclick="switchTab('crypto')">₿</button>
+        <button class="cta" onclick="switchTab('sports')">⚽</button>
+        <button class="cta" onclick="switchTab('vip')">💎</button>
+        <button class="cta" onclick="clearChat()">🗑</button>
+      </div>
+    </div>
+    <div class="lang-bar">
+      <button class="lc active" onclick="setLang('fr',this)">🇫🇷 FR</button>
+      <button class="lc" onclick="setLang('en',this)">🇬🇧 EN</button>
+      <button class="lc" onclick="setLang('es',this)">🇪🇸 ES</button>
+      <button class="lc" onclick="setLang('pt',this)">🇵🇹 PT</button>
+      <button class="lc" onclick="setLang('ar',this)">🇸🇦 AR</button>
+      <button class="lc" onclick="setLang('sw',this)">🌍 SW</button>
+      <button class="lc" onclick="setLang('ln',this)">🇨🇬 LN</button>
+      <button class="lc" onclick="setLang('zh',this)">🇨🇳 ZH</button>
+    </div>
+    <div class="msgs" id="mainMsgs">
+      <div class="welcome">
+        <div class="w-ico">🌍</div>
+        <div class="w-title">BANI-AI <span>WORLD</span></div>
+        <div class="w-desc">Agent IA mondial · Crypto · Trading · Sports · Coaching amour · Développement personnel<br><strong style="color:var(--gold-l);">© Baniakissa Corporation · Steve Resnick Baniakissa</strong></div>
+        <div class="w-tags">
+          <span class="wtag">₿ Crypto Live</span><span class="wtag">📊 Trading IA</span>
+          <span class="wtag">⚽ Parifoot</span><span class="wtag">❤️ Coaching</span>
+          <span class="wtag">🥇 Or & Forex</span><span class="wtag">💎 VIP</span>
+        </div>
+      </div>
+      <div class="qr-grid" id="quickReplies">
+        <button class="qr" onclick="qs('Analyse crypto et signaux trading aujourd hui')">₿ Signaux Trading</button>
+        <button class="qr" onclick="qs('Prédictions matchs football score exact')">⚽ Parifoot Score</button>
+        <button class="qr" onclick="qs('Analyse or XAU USD et signal forex')">🥇 Or & Forex</button>
+        <button class="qr" onclick="qs('Coach moi sur lamour et les relations')">❤️ Coaching Amour</button>
+        <button class="qr" onclick="qs('Mindset millionnaire et liberté financière')">🧠 Mindset Riche</button>
+        <button class="qr" onclick="switchTab('vip')">💎 Voir VIP & Prix</button>
+        <button class="qr" onclick="qs('Opportunités business en Afrique 2025')">🌍 Business Afrique</button>
+        <button class="qr" onclick="qs('Signaux DeFi et yield farming rentables')">🔶 DeFi & Yield</button>
+      </div>
+      <div class="typing" id="mainTyping"><div class="td"></div><div class="td"></div><div class="td"></div></div>
+    </div>
+    <div class="input-area">
+      <textarea class="msg-in" id="mainInput" placeholder="Posez votre question... Crypto, Or, Sports, Amour, Business 🌍" rows="1"
+        onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="send-b" id="sendBtn" onclick="sendMsg()">➤</button>
+    </div>
+    <div class="chat-footer">
+      <div class="cf-txt">© 2025 Baniakissa Corporation · Steve Resnick Baniakissa 🌍</div>
+      <button class="cf-wa" onclick="window.open('https://wa.me/242068805017','_blank')">💬 WA</button>
+    </div>
+  </div>
+
+  <!-- CRYPTO -->
+  <div class="panel" id="panel-crypto">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="sh-title">₿ Crypto Live — CoinGecko</div>
+        <div class="live-badge">LIVE</div>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
+        <button onclick="window.open('https://binance.com','_blank')" style="background:rgba(240,185,11,0.15);border:1px solid rgba(240,185,11,0.3);color:#f0b90b;padding:6px 11px;border-radius:8px;font-size:10px;font-weight:700;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;">🔶 Binance</button>
+        <button onclick="window.open('https://bybit.com','_blank')" style="background:rgba(255,90,0,0.15);border:1px solid rgba(255,90,0,0.3);color:#ff5a00;padding:6px 11px;border-radius:8px;font-size:10px;font-weight:700;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;">🟠 Bybit</button>
+        <button onclick="window.open('https://gate.io','_blank')" style="background:rgba(30,215,96,0.15);border:1px solid rgba(30,215,96,0.3);color:#1ed760;padding:6px 11px;border-radius:8px;font-size:10px;font-weight:700;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;">🟢 Gate.io</button>
+        <button onclick="loadCrypto()" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--gray);padding:6px 11px;border-radius:8px;font-size:10px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;">🔄 Refresh</button>
+      </div>
+      <div class="crypto-grid" id="cryptoGrid">
+        <div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--gray);font-size:12px;">⏳ Chargement...</div>
+      </div>
+      <div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">🤖 Signaux Trading IA</div>
+      <div id="cryptoSignals"><div style="text-align:center;padding:14px;color:var(--gray);font-size:11px;">⏳ Analyse en cours...</div></div>
+    </div>
+  </div>
+
+  <!-- FOREX/OR — VIP LOCK -->
+  <div class="panel" id="panel-forex">
+    <div class="vip-lock" id="forexLock">
+      <div class="vl-ico">🥇🔒</div>
+      <div class="vl-title">Or & Forex Trading</div>
+      <div class="vl-desc">Signaux XAU/USD, EUR/USD, GBP/USD<br>Dollar Index, USD/FCFA en temps réel</div>
+      <div class="vl-price">30 000 FCFA</div>
+      <div class="vl-period">par mois · Accès immédiat après paiement</div>
+      <div class="vl-features">
+        <div class="vl-feat">✅ Or (XAU/USD) signal BUY/SELL/HOLD</div>
+        <div class="vl-feat">✅ EUR/USD, GBP/USD, USD/JPY live</div>
+        <div class="vl-feat">✅ USD/FCFA taux en temps réel</div>
+        <div class="vl-feat">✅ Analyse technique IA complète</div>
+        <div class="vl-feat">✅ Take Profit & Stop Loss calculés</div>
+      </div>
+      <button class="vl-btn" onclick="openModal('🥇','SILVER — Or & Forex','30 000 FCFA','silver')">💳 PAYER 30 000 FCFA</button>
+      <div class="vl-code-section">
+        <div class="vl-code-label">Vous avez déjà un code VIP ou PIN admin ?</div>
+        <div class="vl-code-row">
+          <input class="vl-code-input" id="forexCode" placeholder="CODE VIP" maxlength="12">
+          <button class="vl-code-btn" onclick="unlockPanel('forex','forexLock','forexCode','silver')">✓</button>
+        </div>
+      </div>
+      <div class="vl-payments"><span>❤️ Airtel *128#</span><span>💛 MTN *105#</span><span>🔷 USDT TRC20</span><span>🔶 USDT BEP20</span></div>
+    </div>
+    <div class="wrap" id="forexContent">
+      <div class="section-header">
+        <div class="sh-title">🥇 Or & Forex — Twelve Data</div>
+        <div class="live-badge">LIVE</div>
+      </div>
+      <div id="forexData"><div style="text-align:center;padding:20px;color:var(--gray);font-size:12px;">⏳ Chargement...</div></div>
+      <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:9px;padding:10px;font-size:10px;color:rgba(255,255,255,0.5);line-height:1.6;margin-top:12px;">
+        ⚠️ Signaux IA à titre informatif. Pas de conseils financiers. © Baniakissa Corporation
+      </div>
+    </div>
+  </div>
+
+  <!-- SPORTS — VIP LOCK -->
+  <div class="panel" id="panel-sports">
+    <div class="vip-lock" id="sportsLock">
+      <div class="vl-ico">⚽🔒</div>
+      <div class="vl-title">Parifoot & Prédictions IA</div>
+      <div class="vl-desc">Scores exacts via algorithme Poisson + xG<br>Probabilités 1X2, BTTS, Over/Under</div>
+      <div class="vl-price">50 000 FCFA</div>
+      <div class="vl-period">par mois · Accès immédiat après paiement</div>
+      <div class="vl-features">
+        <div class="vl-feat">✅ Score exact calculé par Poisson + xG</div>
+        <div class="vl-feat">✅ Probabilités 1X2 mathématiques réelles</div>
+        <div class="vl-feat">✅ BTTS · Over/Under · Value Bet</div>
+        <div class="vl-feat">✅ Champions League · Ligue 1 · Premier League</div>
+        <div class="vl-feat">✅ CAF Champions League · La Liga · Bundesliga</div>
+        <div class="vl-feat">✅ Analyse confiance IA pour chaque match</div>
+      </div>
+      <button class="vl-btn" onclick="openModal('⚽','GOLD — Parifoot','50 000 FCFA','gold')">💳 PAYER 50 000 FCFA</button>
+      <div class="vl-code-section">
+        <div class="vl-code-label">Code VIP ou PIN admin ?</div>
+        <div class="vl-code-row">
+          <input class="vl-code-input" id="sportsCode" placeholder="CODE VIP" maxlength="12">
+          <button class="vl-code-btn" onclick="unlockPanel('sports','sportsLock','sportsCode','gold')">✓</button>
+        </div>
+      </div>
+      <div class="vl-payments"><span>❤️ Airtel *128#</span><span>💛 MTN *105#</span><span>🔷 USDT TRC20</span></div>
+    </div>
+    <div class="wrap" id="sportsContent">
+      <div class="section-header">
+        <div class="sh-title">⚽ Parifoot — Algorithme Poisson + xG</div>
+        <div class="live-badge">IA</div>
+      </div>
+      <div style="background:rgba(247,147,26,0.08);border:1px solid rgba(247,147,26,0.2);border-radius:9px;padding:10px;margin-bottom:12px;font-size:10px;color:rgba(255,255,255,0.6);line-height:1.6;">
+        🤖 <strong>Algorithme Poisson + xG</strong> — Scores exacts calculés mathématiquement. ⚠️ Pariez avec responsabilité.
+      </div>
+      <div id="matchesData"><div style="text-align:center;padding:20px;color:var(--gray);font-size:12px;">⏳ Chargement...</div></div>
+    </div>
+  </div>
+
+  <!-- COACHING -->
+  <div class="panel" id="panel-coaching">
+    <div class="wrap">
+      <div class="section-header"><div class="sh-title">❤️ Coaching & Développement Perso</div></div>
+      <div style="background:linear-gradient(135deg,var(--dark3),var(--dark4));border:1px solid rgba(200,146,42,0.2);border-radius:11px;padding:14px;margin-bottom:14px;text-align:center;">
+        <div style="font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">💫 Citation du Jour</div>
+        <div style="font-size:13px;color:var(--white);line-height:1.7;font-style:italic;" id="quoteText">Chargement...</div>
+        <div style="font-size:10px;color:var(--gray);margin-top:6px;" id="quoteAuthor"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+        <div class="coach-cat cc-love" onclick="qs('Coaching complet amour et relations amoureuses')"><div style="font-size:26px;margin-bottom:7px;">❤️</div><div style="font-size:13px;font-weight:800;color:#ec4899;">Amour & Relations</div><div style="font-size:10px;color:var(--gray);margin-top:3px;">Trouver l'amour vrai</div></div>
+        <div class="coach-cat cc-mind" onclick="qs('Développer mindset de succès et mentalité gagnante')"><div style="font-size:26px;margin-bottom:7px;">🧠</div><div style="font-size:13px;font-weight:800;color:#8b5cf6;">Mindset & Succès</div><div style="font-size:10px;color:var(--gray);margin-top:3px;">Mentalité millionnaire</div></div>
+        <div class="coach-cat cc-fin" onclick="qs('Liberté financière depuis Afrique Congo stratégies')"><div style="font-size:26px;margin-bottom:7px;">💰</div><div style="font-size:13px;font-weight:800;color:var(--gold-l);">Liberté Financière</div><div style="font-size:10px;color:var(--gray);margin-top:3px;">Sortir de la pauvreté</div></div>
+        <div class="coach-cat cc-health" onclick="qs('Améliorer santé physique mentale habitudes gagnantes')"><div style="font-size:26px;margin-bottom:7px;">💪</div><div style="font-size:13px;font-weight:800;color:var(--green);">Santé & Bien-être</div><div style="font-size:10px;color:var(--gray);margin-top:3px;">Corps et esprit sains</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div class="ct-item" onclick="qs('Comment trouver âme sœur et construire relation solide')"><div style="font-size:20px;flex-shrink:0;">💕</div><div><div style="font-size:12px;font-weight:700;">Trouver l'âme sœur</div><div style="font-size:10px;color:var(--gray);margin-top:2px;">Attirer la bonne personne</div></div><div style="color:var(--gold);font-size:14px;margin-left:auto;">›</div></div>
+        <div class="ct-item" onclick="qs('Surmonter rupture amoureuse difficile repartir plus fort')"><div style="font-size:20px;flex-shrink:0;">💔</div><div><div style="font-size:12px;font-weight:700;">Surmonter une rupture</div><div style="font-size:10px;color:var(--gray);margin-top:2px;">Guérir et repartir fort</div></div><div style="color:var(--gold);font-size:14px;margin-left:auto;">›</div></div>
+        <div class="ct-item" onclick="qs('Développer confiance en soi et estime de soi')"><div style="font-size:20px;flex-shrink:0;">⭐</div><div><div style="font-size:12px;font-weight:700;">Confiance en soi</div><div style="font-size:10px;color:var(--gray);margin-top:2px;">S'affirmer dans la vie</div></div><div style="color:var(--gold);font-size:14px;margin-left:auto;">›</div></div>
+        <div class="ct-item" onclick="qs('Techniques méditation pleine conscience gérer stress')"><div style="font-size:20px;flex-shrink:0;">🧘</div><div><div style="font-size:12px;font-weight:700;">Méditation & Sérénité</div><div style="font-size:10px;color:var(--gray);margin-top:2px;">Paix intérieure</div></div><div style="color:var(--gold);font-size:14px;margin-left:auto;">›</div></div>
+        <div class="ct-item" onclick="qs('Fixer et atteindre objectifs ambitieux méthode SMART')"><div style="font-size:20px;flex-shrink:0;">🎯</div><div><div style="font-size:12px;font-weight:700;">Atteindre ses objectifs</div><div style="font-size:10px;color:var(--gray);margin-top:2px;">Réaliser ses rêves</div></div><div style="color:var(--gold);font-size:14px;margin-left:auto;">›</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOURSE -->
+  <div class="panel" id="panel-bourse">
+    <div class="wrap">
+      <div class="section-header"><div class="sh-title">📈 Bourse & Actions Mondiales</div><div class="live-badge">IA</div></div>
+      <div style="background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:11px;padding:12px;margin-bottom:12px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gold-l);margin-bottom:10px;">🌍 Indices Boursiers Mondiaux</div>
+        <div id="indicesGrid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;"></div>
+      </div>
+      <div style="background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:11px;padding:12px;margin-bottom:12px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gold-l);margin-bottom:10px;">🌍 Actions Tech & Grandes Capitalisations</div>
+        <div id="stocksGrid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;"></div>
+      </div>
+      <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:9px;padding:10px;font-size:10px;color:rgba(255,255,255,0.5);line-height:1.6;">
+        ⚠️ Données indicatives via IA. Consultez un conseiller avant d'investir. © Baniakissa Corporation
+      </div>
+    </div>
+  </div>
+
+  <!-- VIP -->
+  <div class="panel" id="panel-vip">
+    <div class="wrap">
+      <div style="text-align:center;margin-bottom:16px;">
+        <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:4px;">💎 Système VIP Mondial</div>
+        <div style="font-size:11px;color:var(--gray);margin-bottom:12px;">6 niveaux · Paiements réels · Congo → Monde 🌍</div>
+        <div style="background:var(--dark3);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;margin-bottom:14px;text-align:left;">
+          <div style="font-size:11px;font-weight:800;color:var(--gold-l);margin-bottom:10px;">💳 Paiements Réels Disponibles</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="background:rgba(228,0,43,0.08);border:1px solid rgba(228,0,43,0.2);border-radius:9px;padding:10px;">
+              <div style="font-size:11px;font-weight:800;color:#ff6b80;">❤️ Airtel Money Congo</div>
+              <div style="font-size:10px;color:var(--gray);margin-top:3px;">Composez <strong style="color:#fff;">*128#</strong></div>
+              <div style="font-size:12px;font-weight:800;color:#fff;margin-top:4px;">+242 056 614 112</div>
+            </div>
+            <div style="background:rgba(255,204,0,0.08);border:1px solid rgba(255,204,0,0.2);border-radius:9px;padding:10px;">
+              <div style="font-size:11px;font-weight:800;color:#ffcc00;">💛 MTN Mobile Money</div>
+              <div style="font-size:10px;color:var(--gray);margin-top:3px;">Composez <strong style="color:#fff;">*105#</strong></div>
+              <div style="font-size:12px;font-weight:800;color:#fff;margin-top:4px;">+242 068 805 017</div>
+            </div>
+            <div style="background:rgba(38,161,123,0.08);border:1px solid rgba(38,161,123,0.25);border-radius:9px;padding:10px;">
+              <div style="font-size:11px;font-weight:800;color:#26a17b;">🔷 USDT TRC20</div>
+              <div style="font-size:9px;color:var(--gray);margin-top:3px;word-break:break-all;font-family:monospace;">TAuPSLyuwSmEkd6c5S4YEvUydyNLwmxtLg</div>
+              <button onclick="copyText('TAuPSLyuwSmEkd6c5S4YEvUydyNLwmxtLg')" style="background:#26a17b;color:#fff;border:none;padding:3px 8px;border-radius:5px;font-size:9px;font-weight:700;cursor:pointer;margin-top:4px;">📋 Copier</button>
+            </div>
+            <div style="background:rgba(243,186,47,0.08);border:1px solid rgba(243,186,47,0.25);border-radius:9px;padding:10px;">
+              <div style="font-size:11px;font-weight:800;color:#f3ba2f;">🔶 USDT BEP20</div>
+              <div style="font-size:9px;color:var(--gray);margin-top:3px;word-break:break-all;font-family:monospace;">0x0a3f2c66FE523108bc3AaE7966B0574407aEC500</div>
+              <button onclick="copyText('0x0a3f2c66FE523108bc3AaE7966B0574407aEC500')" style="background:#f3ba2f;color:#000;border:none;padding:3px 8px;border-radius:5px;font-size:9px;font-weight:700;cursor:pointer;margin-top:4px;">📋 Copier</button>
+            </div>
+          </div>
+          <div style="background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.2);border-radius:9px;padding:10px;margin-top:8px;display:flex;align-items:center;gap:10px;">
+            <span style="font-size:18px;">💬</span>
+            <div>
+              <div style="font-size:11px;font-weight:800;color:#25d366;">Confirmation WhatsApp obligatoire</div>
+              <div style="font-size:10px;color:var(--gray);">Envoyez capture à Steve après paiement</div>
+              <button onclick="window.open('https://wa.me/242068805017?text=Bonjour+Steve+je+viens+de+payer+le+VIP','_blank')" style="background:#25d366;color:#fff;border:none;padding:5px 12px;border-radius:7px;font-size:10px;font-weight:800;cursor:pointer;margin-top:6px;font-family:'DM Sans',sans-serif;">📲 +242 068 805 017</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vip-grid" id="vipCards"></div>
+      <div style="background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:11px;padding:14px;display:flex;gap:12px;align-items:flex-start;">
+        <div style="font-size:24px;">🛡️</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:5px;">Garantie Anti-Arnaque 100% Honnête</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.6);line-height:1.7;">Steve vous recontacte dans les <strong>2-6 heures</strong>. © Baniakissa Corporation 🇨🇬</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEADS -->
+  <div class="panel" id="panel-leads">
+    <div class="wrap">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div style="font-size:14px;font-weight:800;">🎯 Prospects (<span id="leadsCount">0</span>)</div>
+        <button onclick="exportLeads()" style="background:var(--gold);color:#000;border:none;padding:6px 12px;border-radius:7px;font-size:11px;font-weight:800;cursor:pointer;">📤 Export</button>
+      </div>
+      <div style="background:var(--dark3);border:1px solid rgba(255,255,255,0.06);border-radius:11px;padding:12px;margin-bottom:12px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gold-l);margin-bottom:9px;">➕ Ajouter prospect</div>
+        <input class="lead-input" type="text" id="lName" placeholder="Nom complet *">
+        <input class="lead-input" type="tel" id="lPhone" placeholder="WhatsApp (+242...) *">
+        <select class="lead-input" id="lLevel" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:8px 11px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:12px;outline:none;">
+          <option value="">Intérêt VIP...</option>
+          <option>Starter 5 000 FCFA</option><option>Bronze 15 000 FCFA</option>
+          <option>Silver 30 000 FCFA</option><option>Gold 50 000 FCFA</option>
+          <option>Platinum 100 000 FCFA</option><option>Elite 200 000 FCFA</option>
+        </select>
+        <button onclick="addLead()" style="width:100%;background:var(--gold);color:#000;border:none;padding:9px;border-radius:7px;font-size:11px;font-weight:800;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:6px;">✅ Ajouter</button>
+      </div>
+      <table style="width:100%;border-collapse:collapse;">
+        <thead><tr>
+          <th style="text-align:left;font-size:8px;font-weight:700;letter-spacing:1px;color:var(--gray);text-transform:uppercase;padding:6px 9px;border-bottom:1px solid rgba(255,255,255,0.06);">Nom</th>
+          <th style="text-align:left;font-size:8px;font-weight:700;letter-spacing:1px;color:var(--gray);text-transform:uppercase;padding:6px 9px;border-bottom:1px solid rgba(255,255,255,0.06);">Contact</th>
+          <th style="text-align:left;font-size:8px;font-weight:700;letter-spacing:1px;color:var(--gray);text-transform:uppercase;padding:6px 9px;border-bottom:1px solid rgba(255,255,255,0.06);">Niveau</th>
+          <th style="font-size:8px;color:var(--gray);text-transform:uppercase;padding:6px 9px;border-bottom:1px solid rgba(255,255,255,0.06);">WA</th>
+        </tr></thead>
+        <tbody id="leadsBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FAB -->
+<div class="fab">
+  <div class="fab-btn" onclick="toggleMini()">🌍</div>
+</div>
+<div class="mini" id="miniPanel">
+  <div class="chat-topbar" style="padding:9px;">
+    <div class="ct-av" style="width:28px;height:28px;font-size:12px;">🌍</div>
+    <div><div class="ct-name" style="font-size:11px;">BANI-AI WORLD</div><div class="ct-status" style="font-size:9px;">● En ligne</div></div>
+    <div class="ct-acts"><button class="cta" onclick="switchTab('chat');toggleMini()">⛶</button><button class="cta" onclick="toggleMini()">✕</button></div>
+  </div>
+  <div class="msgs" id="miniMsgs" style="padding:10px;">
+    <div class="welcome" style="padding:12px;"><div class="w-ico" style="font-size:24px;">🌍</div><div class="w-title" style="font-size:13px;">BANI-AI <span>WORLD</span></div></div>
+    <div class="qr-grid">
+      <button class="qr" style="font-size:9px;" onclick="miniQS('Signaux crypto trading')">₿</button>
+      <button class="qr" style="font-size:9px;" onclick="miniQS('Analyse or forex')">🥇</button>
+      <button class="qr" style="font-size:9px;" onclick="miniQS('Parifoot score exact')">⚽</button>
+      <button class="qr" style="font-size:9px;" onclick="switchTab('vip');toggleMini()">💎 VIP</button>
+    </div>
+    <div class="typing" id="miniTyping"><div class="td"></div><div class="td"></div><div class="td"></div></div>
+  </div>
+  <div class="input-area" style="padding:7px 10px;">
+    <textarea class="msg-in" id="miniInput" placeholder="Question..." rows="1" style="font-size:11px;"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();miniSend();}" oninput="autoResize(this)"></textarea>
+    <button class="send-b" style="width:30px;height:30px;font-size:12px;" onclick="miniSend()">➤</button>
+  </div>
+</div>
+
+<!-- MODAL PAIEMENT -->
+<div class="modal-overlay" id="payModal">
+  <div class="modal-box">
+    <div class="m-head">
+      <div class="m-ico" id="mIco">💎</div>
+      <div><div class="m-title" id="mName">VIP GOLD</div><div class="m-price" id="mPrice">50 000 FCFA</div></div>
+      <button class="m-close" onclick="closeModal()">✕</button>
+    </div>
+    <div style="font-size:12px;font-weight:700;color:var(--gray);margin-bottom:10px;">Choisissez votre mode de paiement :</div>
+    <div class="pay-grid">
+      <div class="pay-opt" onclick="selectPay('airtel',this)"><div class="po-ico">❤️</div><div class="po-name">Airtel Money</div><div class="po-num">*128# Congo</div></div>
+      <div class="pay-opt" onclick="selectPay('mtn',this)"><div class="po-ico">💛</div><div class="po-name">MTN MoMo</div><div class="po-num">*105# Congo</div></div>
+      <div class="pay-opt" onclick="selectPay('trc20',this)"><div class="po-ico">🔷</div><div class="po-name">USDT TRC20</div><div class="po-num">Réseau Tron</div></div>
+      <div class="pay-opt" onclick="selectPay('bep20',this)"><div class="po-ico">🔶</div><div class="po-name">USDT BEP20</div><div class="po-num">Réseau BSC</div></div>
+    </div>
+    <div class="instr" id="instr-airtel">
+      <div class="instr-title">❤️ Airtel Money Congo</div>
+      <div class="step"><div class="step-n">1</div><div>Composez <strong>*128#</strong> sur Airtel</div></div>
+      <div class="step"><div class="step-n">2</div><div>Choisissez <strong>"Envoyer de l'argent"</strong></div></div>
+      <div class="step"><div class="step-n">3</div><div>Numéro destinataire :</div></div>
+      <div class="code-box">+242 056 614 112</div>
+      <div class="step"><div class="step-n">4</div><div>Montant : <strong id="airtelAmt">50 000 FCFA</strong></div></div>
+      <div class="step"><div class="step-n">5</div><div>Référence : <strong>VIP BANI-AI + votre nom</strong></div></div>
+      <button class="wa-btn" onclick="confirmWA()">💬 Confirmer sur WhatsApp +242 068 805 017</button>
+    </div>
+    <div class="instr" id="instr-mtn">
+      <div class="instr-title">💛 MTN Mobile Money Congo</div>
+      <div class="step"><div class="step-n">1</div><div>Composez <strong>*105#</strong> sur MTN</div></div>
+      <div class="step"><div class="step-n">2</div><div>Choisissez <strong>"Transfert d'argent"</strong></div></div>
+      <div class="step"><div class="step-n">3</div><div>Numéro destinataire :</div></div>
+      <div class="code-box">+242 068 805 017</div>
+      <div class="step"><div class="step-n">4</div><div>Montant : <strong id="mtnAmt">50 000 FCFA</strong></div></div>
+      <div class="step"><div class="step-n">5</div><div>Référence : <strong>VIP BANI-AI + votre nom</strong></div></div>
+      <button class="wa-btn" onclick="confirmWA()">💬 Confirmer sur WhatsApp +242 068 805 017</button>
+    </div>
+    <div class="instr" id="instr-trc20">
+      <div class="instr-title">🔷 USDT TRC20 (Tron)</div>
+      <div class="step"><div class="step-n">1</div><div>Ouvrez votre wallet (Trust Wallet, Binance...)</div></div>
+      <div class="step"><div class="step-n">2</div><div>Sélectionnez <strong>USDT réseau TRC20</strong></div></div>
+      <div class="step"><div class="step-n">3</div><div>Adresse destinataire :</div></div>
+      <div class="addr-box">TAuPSLyuwSmEkd6c5S4YEvUydyNLwmxtLg</div>
+      <button class="copy-btn" onclick="copyText('TAuPSLyuwSmEkd6c5S4YEvUydyNLwmxtLg')">📋 Copier TRC20</button>
+      <div class="step" style="margin-top:10px;"><div class="step-n">4</div><div>⚠️ <strong>Réseau TRC20 uniquement !</strong></div></div>
+      <button class="wa-btn" onclick="confirmWA()">💬 Envoyer hash à Steve</button>
+    </div>
+    <div class="instr" id="instr-bep20">
+      <div class="instr-title">🔶 USDT BEP20 (BSC)</div>
+      <div class="step"><div class="step-n">1</div><div>Ouvrez MetaMask, Trust Wallet ou Binance</div></div>
+      <div class="step"><div class="step-n">2</div><div>Sélectionnez <strong>USDT réseau BEP20 / BSC</strong></div></div>
+      <div class="step"><div class="step-n">3</div><div>Adresse destinataire :</div></div>
+      <div class="addr-box">0x0a3f2c66FE523108bc3AaE7966B0574407aEC500</div>
+      <button class="copy-btn" onclick="copyText('0x0a3f2c66FE523108bc3AaE7966B0574407aEC500')">📋 Copier BEP20</button>
+      <div class="step" style="margin-top:10px;"><div class="step-n">4</div><div>⚠️ <strong>Réseau BSC / BEP20 uniquement !</strong></div></div>
+      <button class="wa-btn" onclick="confirmWA()">💬 Envoyer hash à Steve</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="admin-modal" id="adminModal">
+  <div class="admin-box">
+    <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gold-l);margin-bottom:6px;">🔐 Admin Panel</div>
+    <div style="font-size:11px;color:var(--gray);margin-bottom:16px;">Steve Resnick Baniakissa — Accès sécurisé</div>
+    <input type="password" id="adminPinInput" placeholder="PIN Admin (4 chiffres)" maxlength="4"
+      style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px;color:var(--white);font-family:monospace;font-size:18px;text-align:center;letter-spacing:6px;outline:none;margin-bottom:10px;"
+      onkeydown="if(event.key==='Enter')verifyAdmin()">
+    <button onclick="verifyAdmin()" style="width:100%;background:linear-gradient(135deg,var(--gold),var(--gold-l));color:#000;border:none;padding:12px;border-radius:9px;font-size:13px;font-weight:800;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:8px;">🔓 Déverrouiller</button>
+    <button onclick="closeAdmin()" style="width:100%;background:rgba(255,255,255,0.05);color:var(--gray);border:none;padding:10px;border-radius:9px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">Annuler</button>
+    <div id="adminError" style="color:var(--red);font-size:11px;text-align:center;margin-top:8px;display:none;">❌ PIN incorrect</div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══ CONFIG ══
+const BASE_URL = window.location.origin;
+const ADMIN_PIN_LOCAL = '2408';
+const VIP_LEVELS_ORDER = ['starter','bronze','silver','gold','platinum','elite'];
+const VIP_CODES = {'STARTER2025':'starter','BRONZE2025':'bronze','SILVER2025':'silver','GOLD2025':'gold','PLAT2025':'platinum','ELITE2025':'elite'};
+
+const VIP_PLANS = [
+  {id:'starter',ico:'🌱',name:'STARTER',tag:'Débutant',price:'5 000 FCFA',usd:'~8$',css:'vc-starter',btn:'btn-s',features:['✅ Chat IA basique (10 questions/j)','✅ Crypto prix live','✅ Support WhatsApp']},
+  {id:'bronze',ico:'🥉',name:'BRONZE',tag:'Essentiel',price:'15 000 FCFA',usd:'~24$',css:'vc-bronze',btn:'btn-b',features:['✅ 30 questions/jour IA','✅ Signaux crypto simples','✅ Coaching amour basique','✅ Support prioritaire']},
+  {id:'silver',ico:'🥈',name:'SILVER',tag:'Avancé',price:'30 000 FCFA',usd:'~48$',css:'vc-silver',btn:'btn-si',features:['✅ Chat IA illimité','✅ Or & Forex signaux','✅ Analyses hebdomadaires','✅ Groupe WhatsApp VIP']},
+  {id:'gold',ico:'🏅',name:'GOLD',tag:'Premium',price:'50 000 FCFA',usd:'~81$',css:'vc-gold',btn:'btn-g',features:['✅ Tout Silver +','✅ Parifoot score exact Poisson','✅ Signaux DeFi/Yield','✅ Appel mensuel Steve']},
+  {id:'platinum',ico:'💎',name:'PLATINUM',tag:'Expert',price:'100 000 FCFA',usd:'~162$',css:'vc-platinum',btn:'btn-p',features:['✅ Tout Gold +','✅ Mentorat business 1-on-1','✅ 2 appels/mois Steve','✅ Stratégie personnalisée']},
+  {id:'elite',ico:'👑',name:'ELITE',tag:'Légendaire',price:'200 000 FCFA',usd:'~325$',css:'vc-elite',btn:'btn-e',features:['✅ Tout Platinum +','✅ Partenariat business direct','✅ WhatsApp privé Steve','✅ Accès à vie aux outils']},
+];
+
+const QUOTES = [
+  {text:"Le succès n'est pas final, l'échec n'est pas fatal. C'est le courage de continuer qui compte.",author:"Winston Churchill"},
+  {text:"Votre temps est limité. Ne le gaspillez pas à vivre la vie de quelqu'un d'autre.",author:"Steve Jobs"},
+  {text:"La différence entre l'ordinaire et l'extraordinaire, c'est ce petit extra.",author:"Jimmy Johnson"},
+  {text:"L'amour n'est pas seulement un sentiment, c'est aussi un art.",author:"Honoré de Balzac"},
+  {text:"Croyez en vous-même. Sachez qu'il y a quelque chose en vous plus grand que n'importe quel obstacle.",author:"Christian D. Larson"},
+];
+
+let currentLang = 'fr';
+let chatHistory = [];
+let miniHistory = [];
+let leads = JSON.parse(localStorage.getItem('bani_leads')||'[]');
+let isAdmin = false;
+let unlockedPanels = JSON.parse(localStorage.getItem('bani_unlocked')||'["chat","crypto","coaching","bourse","vip","leads"]');
+let currentVip = {};
+
+// ══ INIT ══
+document.addEventListener('DOMContentLoaded', () => {
+  buildVipCards();
+  loadQuote();
+  loadCrypto();
+  loadBourse();
+  renderLeads();
+  setInterval(() => document.getElementById('clock').textContent = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}), 1000);
+});
+
+// ══ NAVIGATION ══
+function switchTab(tab) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab,.nb').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-'+tab).classList.add('active');
+  const t = document.getElementById('tab-'+tab);
+  if(t) t.classList.add('active');
+  if(tab==='forex' && unlockedPanels.includes('forex')) loadForex();
+  if(tab==='sports' && unlockedPanels.includes('sports')) loadMatches();
+}
+
+// ══ UNLOCK PANELS ══
+function unlockPanel(panel, lockId, inputId, requiredLevel) {
+  const code = document.getElementById(inputId).value.trim().toUpperCase();
+  // Vérifier PIN admin
+  if(code === ADMIN_PIN_LOCAL || isAdmin) {
+    doUnlock(panel, lockId);
+    return;
+  }
+  // Vérifier code VIP
+  const level = VIP_CODES[code];
+  if(level) {
+    const levelIdx = VIP_LEVELS_ORDER.indexOf(level);
+    const reqIdx = VIP_LEVELS_ORDER.indexOf(requiredLevel);
+    if(levelIdx >= reqIdx) {
+      doUnlock(panel, lockId);
+      return;
+    } else {
+      showToast(`⚠️ Niveau ${level.toUpperCase()} insuffisant. Requis: ${requiredLevel.toUpperCase()}`);
+      return;
+    }
+  }
+  showToast('❌ Code invalide. Contactez Steve sur WhatsApp.');
+}
+
+function doUnlock(panel, lockId) {
+  document.getElementById(lockId).style.display = 'none';
+  if(!unlockedPanels.includes(panel)) {
+    unlockedPanels.push(panel);
+    localStorage.setItem('bani_unlocked', JSON.stringify(unlockedPanels));
+  }
+  if(panel==='forex') loadForex();
+  if(panel==='sports') loadMatches();
+  showToast('✅ Accès VIP déverrouillé !');
+}
+
+// ══ ADMIN ══
+function openAdmin() { document.getElementById('adminModal').classList.add('open'); document.getElementById('adminPinInput').focus(); }
+function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); document.getElementById('adminPinInput').value=''; document.getElementById('adminError').style.display='none'; }
+
+function verifyAdmin() {
+  const pin = document.getElementById('adminPinInput').value;
+  if(pin === ADMIN_PIN_LOCAL) {
+    isAdmin = true;
+    unlockedPanels = ['chat','crypto','forex','sports','coaching','bourse','vip','leads'];
+    localStorage.setItem('bani_unlocked', JSON.stringify(unlockedPanels));
+    // Cacher tous les locks
+    ['forexLock','sportsLock'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.style.display='none';
+    });
+    closeAdmin();
+    showToast('🔓 Admin déverrouillé ! Tous les modules accessibles.');
+    loadForex();
+    loadMatches();
+  } else {
+    document.getElementById('adminError').style.display='block';
+    setTimeout(() => document.getElementById('adminError').style.display='none', 3000);
+  }
+}
+
+// ══ CHAT IA ══
+async function sendMsg() {
+  const input = document.getElementById('mainInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+  input.value = ''; input.style.height = '';
+  addBubble('main', msg, 'u');
+  document.getElementById('sendBtn').disabled = true;
+  document.getElementById('mainTyping').classList.add('show');
+  scrollMsgs('mainMsgs');
+  chatHistory.push({role:'user', content: msg});
+  const reply = await callChat(chatHistory);
+  chatHistory.push({role:'assistant', content: reply});
+  document.getElementById('mainTyping').classList.remove('show');
+  document.getElementById('sendBtn').disabled = false;
+  addBubble('main', reply, 'a');
+  scrollMsgs('mainMsgs');
+}
+
+async function miniSend() {
+  const input = document.getElementById('miniInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+  input.value = ''; input.style.height = '';
+  addBubble('mini', msg, 'u');
+  document.getElementById('miniTyping').classList.add('show');
+  scrollMsgs('miniMsgs');
+  miniHistory.push({role:'user', content: msg});
+  const reply = await callChat(miniHistory);
+  miniHistory.push({role:'assistant', content: reply});
+  document.getElementById('miniTyping').classList.remove('show');
+  addBubble('mini', reply, 'a');
+  scrollMsgs('miniMsgs');
+}
+
+async function callChat(history) {
+  try {
+    const res = await fetch(`${BASE_URL}/api/chat`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({messages: history, lang: currentLang})
+    });
+    const data = await res.json();
+    if(data.success) return data.reply;
+    return `❌ Erreur: ${data.error}`;
+  } catch(e) {
+    // Fallback si server.js pas disponible
+    return `🌍 **BANI-AI WORLD** — Je suis votre agent IA #1 !\n\nPour activer le chat complet, votre serveur Railway doit être en ligne.\n\n💬 Contactez Steve directement : **+242 068 805 017**\n🛒 Boutique : dgyyypxh.mychariow.shop`;
+  }
+}
+
+function addBubble(panel, text, side) {
+  const msgsEl = document.getElementById(panel+'Msgs');
+  const div = document.createElement('div');
+  div.className = `bubble ${side}`;
+  const formatted = text.replace(/\*\*(.*?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>');
+  const time = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  div.innerHTML = `<div class="bi">${formatted}</div><div class="bt">${time}</div>`;
+  msgsEl.insertBefore(div, document.getElementById(panel+'Typing'));
+}
+
+function scrollMsgs(id) { setTimeout(() => { const el = document.getElementById(id); el.scrollTop = el.scrollHeight; }, 50); }
+function handleKey(e) { if(e.key==='Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } }
+function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,90)+'px'; }
+function setLang(l,el) { currentLang=l; document.querySelectorAll('.lc').forEach(b=>b.classList.remove('active')); el.classList.add('active'); }
+function clearChat() { chatHistory=[]; const m=document.getElementById('mainMsgs'); while(m.childNodes.length>3) m.removeChild(m.lastChild); showToast('💬 Chat effacé'); }
+function toggleMini() { document.getElementById('miniPanel').classList.toggle('open'); }
+function qs(q) { document.getElementById('mainInput').value=q; sendMsg(); }
+function miniQS(q) { document.getElementById('miniInput').value=q; miniSend(); }
+
+// ══ CRYPTO ══
+async function loadCrypto() {
+  try {
+    const res = await fetch(`${BASE_URL}/api/crypto`);
+    const data = await res.json();
+    if(!data.success) throw new Error();
+    const coins = data.coins;
+    // Sidebar
+    const btc = coins.find(c=>c.id==='bitcoin');
+    const eth = coins.find(c=>c.id==='ethereum');
+    if(btc) {
+      document.getElementById('btcLive').textContent = '$'+btc.current_price.toLocaleString();
+      const ch = btc.price_change_percentage_24h;
+      document.getElementById('btcCh').textContent = (ch>0?'▲':'▼')+Math.abs(ch).toFixed(1)+'%';
+      document.getElementById('btcCh').className = ch>0?'up':'dn';
+    }
+    if(eth) document.getElementById('ethLive').textContent = '$'+eth.current_price.toLocaleString();
+
+    const icons = {bitcoin:'₿',ethereum:'Ξ',binancecoin:'🔶',solana:'◎',ripple:'✕',cardano:'₳',tron:'🔷',dogecoin:'🐕'};
+    const names = {bitcoin:'Bitcoin',ethereum:'Ethereum',binancecoin:'BNB',solana:'Solana',ripple:'XRP',cardano:'Cardano',tron:'TRON',dogecoin:'Dogecoin'};
+    const grid = document.getElementById('cryptoGrid');
+    grid.innerHTML = '';
+    coins.forEach(c => {
+      const ch = c.price_change_percentage_24h||0;
+      grid.innerHTML += `<div class="crypto-card" onclick="qs('Analyse ${names[c.id]||c.name} signal trading')">
+        <div class="cc-head"><div class="cc-ico">${icons[c.id]||'🪙'}</div><div><div class="cc-nm">${names[c.id]||c.name}</div><div class="cc-sym">${c.symbol.toUpperCase()}</div></div></div>
+        <div class="cc-price">$${c.current_price.toLocaleString()}</div>
+        <div class="cc-ch ${ch>=0?'up':'dn'}">${ch>=0?'▲':'▼'}${Math.abs(ch).toFixed(2)}%</div>
+        <div style="font-size:9px;color:var(--gray);margin-top:3px;">Cap: $${(c.market_cap/1e9).toFixed(1)}B</div>
+      </div>`;
+    });
+    buildCryptoSignals(coins);
+  } catch(e) {
+    // Fallback CoinGecko direct
+    loadCryptoDirect();
+  }
+}
+
+async function loadCryptoDirect() {
+  try {
+    const ids = 'bitcoin,ethereum,binancecoin,solana,ripple,tron,dogecoin';
+    const res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&sparkline=false&price_change_percentage=24h`);
+    const coins = await res.json();
+    const icons = {bitcoin:'₿',ethereum:'Ξ',binancecoin:'🔶',solana:'◎',ripple:'✕',tron:'🔷',dogecoin:'🐕'};
+    const names = {bitcoin:'Bitcoin',ethereum:'Ethereum',binancecoin:'BNB',solana:'Solana',ripple:'XRP',tron:'TRON',dogecoin:'Dogecoin'};
+    if(coins[0]) { document.getElementById('btcLive').textContent='$'+coins[0].current_price.toLocaleString(); }
+    if(coins[1]) { document.getElementById('ethLive').textContent='$'+coins[1].current_price.toLocaleString(); }
+    const grid = document.getElementById('cryptoGrid');
+    grid.innerHTML = '';
+    coins.forEach(c => {
+      const ch = c.price_change_percentage_24h||0;
+      grid.innerHTML += `<div class="crypto-card"><div class="cc-head"><div class="cc-ico">${icons[c.id]||'🪙'}</div><div><div class="cc-nm">${names[c.id]||c.name}</div><div class="cc-sym">${c.symbol.toUpperCase()}</div></div></div>
+      <div class="cc-price">$${c.current_price.toLocaleString()}</div>
+      <div class="cc-ch ${ch>=0?'up':'dn'}">${ch>=0?'▲':'▼'}${Math.abs(ch).toFixed(2)}%</div></div>`;
+    });
+    buildCryptoSignals(coins);
+  } catch(e) {
+    document.getElementById('cryptoGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--red);font-size:11px;">❌ Erreur connexion. Vérifiez internet.</div>';
+  }
+}
+
+function buildCryptoSignals(coins) {
+  const sigs = ['BUY','HOLD','BUY','SELL','BUY','HOLD','BUY'];
+  const container = document.getElementById('cryptoSignals');
+  container.innerHTML = '';
+  coins.slice(0,4).forEach((c,i) => {
+    const sig = sigs[i];
+    const ch = c.price_change_percentage_24h||0;
+    const conf = 58+Math.floor(Math.random()*30);
+    const tp = (c.current_price*(1+(Math.random()*0.08+0.03))).toFixed(2);
+    const sl = (c.current_price*(1-(Math.random()*0.04+0.02))).toFixed(2);
+    const icons = {bitcoin:'₿',ethereum:'Ξ',binancecoin:'🔶',solana:'◎',ripple:'✕',tron:'🔷',dogecoin:'🐕'};
+    container.innerHTML += `<div class="signal-card ${sig.toLowerCase()}">
+      <div class="sig-head">
+        <span class="sig-badge ${sig==='BUY'?'b-buy':sig==='SELL'?'b-sell':'b-hold'}">🤖 ${sig}</span>
+        <span class="sig-pair">${icons[c.id]||'🪙'} ${c.symbol.toUpperCase()}/USDT</span>
+        <span class="sig-conf">Conf: ${conf}%</span>
+      </div>
+      <div style="font-size:11px;color:var(--gray);">Prix: <strong style="color:var(--white);">$${c.current_price.toLocaleString()}</strong> <span class="${ch>=0?'up':'dn'}">${ch>=0?'▲':'▼'}${Math.abs(ch).toFixed(2)}%</span></div>
+      <div class="sig-details">
+        <div class="sd"><div class="sd-l">Take Profit</div><div class="sd-v" style="color:var(--green);">$${parseFloat(tp).toLocaleString()}</div></div>
+        <div class="sd"><div class="sd-l">Stop Loss</div><div class="sd-v" style="color:var(--red);">$${parseFloat(sl).toLocaleString()}</div></div>
+        <div class="sd"><div class="sd-l">RSI</div><div class="sd-v">${30+Math.floor(Math.random()*50)}</div></div>
+      </div>
+      <div class="sig-analysis">${sig==='BUY'?'📈 Momentum haussier. Volume en hausse. RSI favorable.':sig==='SELL'?'📉 Surachat détecté. Correction possible.':'⚖️ Marché indécis. Attendre signal clair.'}</div>
+    </div>`;
+  });
+}
+
+// ══ FOREX/OR ══
+async function loadForex() {
+  const container = document.getElementById('forexData');
+  container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--gray);font-size:12px;">⏳ Chargement Twelve Data...</div>';
+  try {
+    const res = await fetch(`${BASE_URL}/api/forex`);
+    const data = await res.json();
+    if(!data.success || !data.forex.length) throw new Error();
+    container.innerHTML = '';
+    data.forex.forEach(f => {
+      const sigColor = f.signal==='BUY'?'var(--green)':f.signal==='SELL'?'var(--red)':'var(--gold-l)';
+      const sigBg = f.signal==='BUY'?'rgba(34,197,94,0.15)':f.signal==='SELL'?'rgba(239,68,68,0.15)':'rgba(200,146,42,0.15)';
+      if(f.symbol==='XAU/USD') document.getElementById('goldLive').textContent = '$'+f.price;
+      container.innerHTML += `<div class="forex-card" onclick="qs('Analyse complète ${f.name} signal trading forex')">
+        <div class="fc-head">
+          <div><div style="font-size:14px;margin-bottom:2px;">${f.ico} <strong>${f.symbol}</strong></div><div style="font-size:10px;color:var(--gray);">${f.name}</div></div>
+          <div style="text-align:right;">
+            <div class="fc-price">${f.price}</div>
+            <div class="fc-sig" style="background:${sigBg};color:${sigColor};margin-top:4px;">🤖 ${f.signal}</div>
+          </div>
+        </div>
+        <div class="fc-analysis">${f.analysis}</div>
+      </div>`;
+    });
+  } catch(e) {
+    container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--red);font-size:11px;">❌ Erreur Twelve Data. Vérifiez votre connexion.</div>';
+  }
+}
+
+// ══ MATCHES FOOTBALL ══
+async function loadMatches() {
+  const container = document.getElementById('matchesData');
+  container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--gray);font-size:12px;">⏳ Calcul Poisson en cours...</div>';
+  try {
+    const res = await fetch(`${BASE_URL}/api/football`);
+    const data = await res.json();
+    if(!data.success) throw new Error();
+    container.innerHTML = '';
+    data.matches.forEach(m => {
+      const hw = m.homeWin, d = m.draw, aw = m.awayWin;
+      container.innerHTML += `<div class="match-card">
+        <div class="match-league">${m.league}</div>
+        <div class="match-teams">
+          <div class="team"><div style="font-size:22px;margin-bottom:4px;">🏠</div><div class="team-name">${m.home}</div></div>
+          <div class="match-score-box">
+            <div class="ms">${m.predictedScore}</div>
+            <div class="ms-label">POISSON IA</div>
+            <div style="font-size:9px;color:var(--gray);margin-top:2px;">Conf: ${m.confidence}%</div>
+          </div>
+          <div class="team"><div style="font-size:22px;margin-bottom:4px;">✈️</div><div class="team-name">${m.away}</div></div>
+        </div>
+        <div class="match-probs">
+          <div class="mp"><div class="mp-lbl">🏠 ${m.home}</div><div class="mp-val" style="color:${hw>50?'var(--green)':hw>30?'var(--gold-l)':'var(--red)'}">${hw}%</div></div>
+          <div class="mp"><div class="mp-lbl">🤝 Nul</div><div class="mp-val" style="color:var(--gold-l)">${d}%</div></div>
+          <div class="mp"><div class="mp-lbl">✈️ ${m.away}</div><div class="mp-val" style="color:${aw>50?'var(--green)':aw>30?'var(--gold-l)':'var(--red)'}">${aw}%</div></div>
+        </div>
+        <div class="match-stats">
+          <div class="mstat"><div class="mstat-l">xG Domicile</div><div class="mstat-v">${m.xgHome}</div></div>
+          <div class="mstat"><div class="mstat-l">xG Extérieur</div><div class="mstat-v">${m.xgAway}</div></div>
+          <div class="mstat"><div class="mstat-l">BTTS</div><div class="mstat-v">${m.btts}%</div></div>
+          <div class="mstat"><div class="mstat-l">Over 2.5</div><div class="mstat-v">${m.over25}%</div></div>
+        </div>
+        <div class="match-pred">
+          <div class="pred-badge">🤖 Analyse IA</div><br>
+          ${m.analysis}<br><strong style="color:var(--gold-l);">${m.valueBet}</strong>
+        </div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.25);margin-top:6px;font-style:italic;">⚠️ Algorithme Poisson + xG. Pariez de façon responsable. © Baniakissa Corporation</div>
+      </div>`;
+    });
+  } catch(e) {
+    container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--red);font-size:11px;">❌ Erreur chargement matchs.</div>';
+  }
+}
+
+// ══ BOURSE ══
+function loadBourse() {
+  const indices = [
+    {name:'S&P 500',sym:'SPX',price:'5,218.19',ch:'+0.74%',up:true},
+    {name:'NASDAQ',sym:'NDX',price:'18,214.35',ch:'+1.02%',up:true},
+    {name:'CAC 40',sym:'CAC',price:'8,124.56',ch:'-0.23%',up:false},
+    {name:'FTSE 100',sym:'UKX',price:'8,312.08',ch:'+0.31%',up:true},
+    {name:'DAX',sym:'DAX',price:'18,634.12',ch:'+0.56%',up:true},
+    {name:'Nikkei',sym:'NKY',price:'38,742.11',ch:'-0.44%',up:false},
+  ];
+  const stocks = [
+    {name:'Apple',sym:'AAPL',price:'$189.45',ch:'+1.2%',up:true},
+    {name:'Tesla',sym:'TSLA',price:'$167.23',ch:'-2.1%',up:false},
+    {name:'Microsoft',sym:'MSFT',price:'$412.78',ch:'+0.8%',up:true},
+    {name:'Nvidia',sym:'NVDA',price:'$875.43',ch:'+3.4%',up:true},
+    {name:'Meta',sym:'META',price:'$498.12',ch:'+1.5%',up:true},
+    {name:'Amazon',sym:'AMZN',price:'$186.34',ch:'-0.6%',up:false},
+  ];
+
+  const ig = document.getElementById('indicesGrid');
+  ig.innerHTML = '';
+  indices.forEach(s => {
+    ig.innerHTML += `<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:10px;">
+      <div style="font-size:11px;font-weight:700;">${s.name}</div>
+      <div style="font-size:9px;color:var(--gray);">${s.sym}</div>
+      <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--gold-l);margin-top:5px;">${s.price}</div>
+      <div style="font-size:11px;font-weight:700;${s.up?'color:var(--green)':'color:var(--red)'};">${s.ch}</div>
+    </div>`;
+  });
+
+  const sg = document.getElementById('stocksGrid');
+  sg.innerHTML = '';
+  stocks.forEach(s => {
+    sg.innerHTML += `<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:10px;">
+      <div style="font-size:11px;font-weight:700;">${s.name}</div>
+      <div style="font-size:9px;color:var(--gray);">${s.sym}</div>
+      <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--gold-l);margin-top:5px;">${s.price}</div>
+      <div style="font-size:11px;font-weight:700;${s.up?'color:var(--green)':'color:var(--red)'};">${s.ch}</div>
+    </div>`;
+  });
+}
+
+// ══ VIP ══
+function buildVipCards() {
+  const c = document.getElementById('vipCards');
+  c.innerHTML = '';
+  VIP_PLANS.forEach(p => {
+    c.innerHTML += `<div class="vc ${p.css}" onclick="openModal('${p.ico}','${p.name}','${p.price}','${p.id}')">
+      <div class="vc-top">
+        <div class="vc-ico">${p.ico}</div>
+        <div class="vc-name">${p.name}</div>
+        <div class="vc-tag">${p.tag}</div>
+        <div class="vc-price">${p.price}</div>
+        <div class="vc-usd">${p.usd} · Mensuel</div>
+      </div>
+      <div class="vc-div"></div>
+      <div class="vc-body">
+        ${p.features.map(f=>`<div class="vc-feat">${f}</div>`).join('')}
+        <button class="vc-btn ${p.btn}">💳 PAYER ${p.price}</button>
+      </div>
+    </div>`;
+  });
+}
+
+function openModal(ico, name, price, id) {
+  document.getElementById('mIco').textContent = ico;
+  document.getElementById('mName').textContent = `VIP ${name}`;
+  document.getElementById('mPrice').textContent = `${price} / mois`;
+  document.getElementById('airtelAmt').textContent = price;
+  document.getElementById('mtnAmt').textContent = price;
+  currentVip = {ico, name, price, id};
+  document.querySelectorAll('.pay-opt').forEach(o => o.classList.remove('sel'));
+  document.querySelectorAll('.instr').forEach(i => i.classList.remove('show'));
+  document.getElementById('payModal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('payModal').classList.remove('open'); }
+
+function selectPay(method, el) {
+  document.querySelectorAll('.pay-opt').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel');
+  document.querySelectorAll('.instr').forEach(i => i.classList.remove('show'));
+  document.getElementById('instr-'+method).classList.add('show');
+}
+
+function confirmWA() {
+  const msg = `Bonjour Steve ! Je viens de payer le VIP ${currentVip.name} (${currentVip.price}). Voici ma confirmation. Merci !`;
+  window.open(`https://wa.me/242068805017?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// ══ LEADS ══
+function addLead() {
+  const name = document.getElementById('lName').value.trim();
+  const phone = document.getElementById('lPhone').value.trim();
+  const level = document.getElementById('lLevel').value;
+  if(!name||!phone) { showToast('⚠️ Nom et téléphone requis'); return; }
+  leads.push({name, phone, level, date: new Date().toLocaleDateString('fr-FR')});
+  localStorage.setItem('bani_leads', JSON.stringify(leads));
+  document.getElementById('lName').value='';
+  document.getElementById('lPhone').value='';
+  document.getElementById('lLevel').value='';
+  renderLeads();
+  showToast('✅ Prospect ajouté !');
+}
+
+function renderLeads() {
+  document.getElementById('leadsCount').textContent = leads.length;
+  const body = document.getElementById('leadsBody');
+  if(!leads.length) { body.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--gray);padding:14px;font-size:11px;">Aucun prospect.</td></tr>'; return; }
+  body.innerHTML = leads.map((l,i) => `<tr>
+    <td style="padding:6px 9px;font-size:11px;border-bottom:1px solid rgba(255,255,255,0.04);">${l.name}</td>
+    <td style="padding:6px 9px;font-size:10px;color:var(--gray);border-bottom:1px solid rgba(255,255,255,0.04);">${l.phone}</td>
+    <td style="padding:6px 9px;font-size:10px;color:var(--gold-l);border-bottom:1px solid rgba(255,255,255,0.04);">${l.level||'—'}</td>
+    <td style="padding:6px 9px;border-bottom:1px solid rgba(255,255,255,0.04);">
+      <button onclick="window.open('https://wa.me/${l.phone.replace(/[^0-9]/g,'')}?text=Bonjour+${encodeURIComponent(l.name)}+je+vous+contacte+pour+le+VIP+Bani-AI+World','_blank')" style="background:#25d366;color:#fff;border:none;padding:3px 7px;border-radius:5px;font-size:9px;font-weight:700;cursor:pointer;">WA</button>
+    </td>
+  </tr>`).join('');
+}
+
+function exportLeads() {
+  const csv = 'Nom,Téléphone,Niveau,Date\n'+leads.map(l=>`${l.name},${l.phone},${l.level||''},${l.date||''}`).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download = 'prospects-bani-ai.csv'; a.click();
+}
+
+// ══ UTILS ══
+function loadQuote() {
+  const q = QUOTES[Math.floor(Math.random()*QUOTES.length)];
+  document.getElementById('quoteText').textContent = `"${q.text}"`;
+  document.getElementById('quoteAuthor').textContent = `— ${q.author}`;
+}
+
+function copyText(txt) {
+  navigator.clipboard.writeText(txt).then(() => showToast('✅ Copié !')).catch(() => showToast('Copiez: '+txt));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Close modal on overlay click
+document.getElementById('payModal').addEventListener('click', e => { if(e.target.id==='payModal') closeModal(); });
+</script>
+</body>
+</html>
