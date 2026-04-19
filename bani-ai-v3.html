@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BANI-AI WORLD V3 — Assistant Business Africain</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #F5A623;
+  --gold2: #FFD166;
+  --black: #080808;
+  --dark: #101010;
+  --card: #161616;
+  --card2: #1E1E1E;
+  --border: #252525;
+  --text: #F0F0F0;
+  --muted: #777;
+  --green: #00C896;
+  --red: #FF4B4B;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior: smooth; }
+body { background:var(--black); color:var(--text); font-family:'DM Sans',sans-serif; min-height:100vh; overflow-x:hidden; }
+
+/* SCREENS */
+.screen { display:none; min-height:100vh; flex-direction:column; }
+.screen.active { display:flex; }
+
+/* ===== SPLASH ===== */
+#splash {
+  align-items:center; justify-content:center;
+  background: radial-gradient(ellipse at 50% 30%, rgba(245,166,35,0.15) 0%, transparent 60%), var(--black);
+}
+.splash-logo {
+  font-family:'Syne',sans-serif; font-weight:800; font-size:2.8rem;
+  letter-spacing:-2px; text-align:center; margin-bottom:8px;
+  animation: fadeUp 0.8s ease both;
+}
+.splash-logo span { color:var(--gold); }
+.splash-sub {
+  color:var(--muted); font-size:0.8rem; letter-spacing:3px; text-transform:uppercase;
+  text-align:center; margin-bottom:48px;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+.splash-btn {
+  background:var(--gold); color:var(--black); font-family:'Syne',sans-serif;
+  font-weight:700; font-size:1rem; border:none; border-radius:14px;
+  padding:16px 40px; cursor:pointer; letter-spacing:0.5px;
+  animation: fadeUp 0.8s 0.4s ease both;
+  box-shadow: 0 8px 30px rgba(245,166,35,0.35);
+}
+.splash-version {
+  position:absolute; bottom:24px; color:var(--muted); font-size:0.7rem;
+  letter-spacing:2px; text-transform:uppercase;
+  animation: fadeUp 0.8s 0.6s ease both;
+}
+
+/* ===== MAIN APP ===== */
+.app-header {
+  padding:16px 20px; display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid var(--border);
+  background:rgba(8,8,8,0.95); backdrop-filter:blur(10px);
+  position:sticky; top:0; z-index:50;
+}
+.app-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1rem; color:var(--gold); }
+.vip-badge {
+  font-size:0.68rem; font-weight:600; padding:4px 10px; border-radius:20px;
+  background:rgba(245,166,35,0.15); border:1px solid rgba(245,166,35,0.3); color:var(--gold);
+  font-family:'Syne',sans-serif; letter-spacing:0.5px;
+}
+.vip-badge.free { background:rgba(119,119,119,0.1); border-color:var(--border); color:var(--muted); }
+
+/* TABS */
+.tabs {
+  display:flex; border-bottom:1px solid var(--border);
+  background:var(--dark); overflow-x:auto; gap:0;
+  position:sticky; top:57px; z-index:49;
+}
+.tab-btn {
+  flex:1; min-width:70px; padding:12px 8px; border:none; background:transparent;
+  color:var(--muted); font-size:0.72rem; font-family:'DM Sans',sans-serif;
+  cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s;
+  white-space:nowrap;
+}
+.tab-btn.active { color:var(--gold); border-bottom-color:var(--gold); }
+
+/* TAB CONTENT */
+.tab-content { display:none; flex:1; flex-direction:column; overflow-y:auto; }
+.tab-content.active { display:flex; }
+
+/* ===== ACCUEIL ===== */
+.home-hero {
+  padding:32px 20px 24px; text-align:center;
+  background: radial-gradient(ellipse at 50% 0%, rgba(245,166,35,0.08) 0%, transparent 60%);
+}
+.home-hero h2 { font-family:'Syne',sans-serif; font-size:1.6rem; font-weight:800; line-height:1.2; margin-bottom:8px; }
+.home-hero h2 em { font-style:normal; color:var(--gold); }
+.home-hero p { color:var(--muted); font-size:0.85rem; line-height:1.6; }
+
+.free-counter {
+  margin:16px 20px; padding:14px 16px;
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  display:flex; align-items:center; gap:12px;
+}
+.counter-icon { font-size:1.4rem; }
+.counter-info { flex:1; }
+.counter-info p { font-size:0.8rem; color:var(--muted); }
+.counter-info strong { font-family:'Syne',sans-serif; font-size:1rem; color:var(--text); }
+.counter-bar { height:4px; background:var(--border); border-radius:2px; margin-top:6px; }
+.counter-fill { height:100%; border-radius:2px; background:var(--gold); transition:width 0.3s; }
+
+.services-grid {
+  padding:0 20px 24px; display:grid; grid-template-columns:1fr 1fr; gap:12px;
+}
+.service-card {
+  background:var(--card); border:1px solid var(--border); border-radius:16px;
+  padding:16px; cursor:pointer; transition:all 0.2s; position:relative; overflow:hidden;
+}
+.service-card:active { transform:scale(0.97); }
+.service-card.locked { opacity:0.6; }
+.service-card .s-icon { font-size:1.8rem; margin-bottom:10px; }
+.service-card .s-name { font-family:'Syne',sans-serif; font-size:0.8rem; font-weight:700; line-height:1.3; margin-bottom:4px; }
+.service-card .s-desc { font-size:0.7rem; color:var(--muted); line-height:1.4; }
+.lock-overlay {
+  position:absolute; top:8px; right:8px;
+  background:rgba(245,166,35,0.15); border:1px solid rgba(245,166,35,0.3);
+  border-radius:6px; padding:2px 6px; font-size:0.6rem; color:var(--gold);
+  font-family:'Syne',sans-serif; font-weight:700;
+}
+
+/* ===== CHAT ===== */
+.chat-container { display:flex; flex-direction:column; height:calc(100vh - 110px); }
+.chat-messages {
+  flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px;
+}
+.msg { max-width:85%; padding:10px 14px; border-radius:14px; font-size:0.85rem; line-height:1.55; animation:fadeUp 0.3s ease; }
+.msg.bot { background:var(--card); border:1px solid var(--border); border-bottom-left-radius:4px; align-self:flex-start; }
+.msg.user { background:var(--gold); color:var(--black); border-bottom-right-radius:4px; align-self:flex-end; font-weight:500; }
+.msg.system { background:rgba(0,200,150,0.1); border:1px solid rgba(0,200,150,0.2); color:var(--green); align-self:center; font-size:0.75rem; border-radius:20px; padding:6px 14px; }
+.typing-wrap { align-self:flex-start; background:var(--card); border:1px solid var(--border); border-radius:14px; border-bottom-left-radius:4px; padding:12px 16px; }
+.dots { display:flex; gap:4px; }
+.dots span { width:6px; height:6px; background:var(--muted); border-radius:50%; animation:bounce 1.2s infinite; }
+.dots span:nth-child(2){animation-delay:0.2s} .dots span:nth-child(3){animation-delay:0.4s}
+
+.chat-input-wrap {
+  padding:12px 16px; border-top:1px solid var(--border);
+  background:var(--dark); display:flex; gap:8px; align-items:center;
+}
+.chat-inp {
+  flex:1; background:var(--card); border:1px solid var(--border);
+  border-radius:12px; padding:10px 14px; color:var(--text);
+  font-size:0.85rem; font-family:'DM Sans',sans-serif; outline:none;
+}
+.chat-inp:focus { border-color:var(--gold); }
+.send-btn {
+  width:42px; height:42px; background:var(--gold); border:none;
+  border-radius:12px; cursor:pointer; font-size:1rem; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+}
+.send-btn:active { background:#C87D0E; }
+
+/* ===== CONTENU ===== */
+.content-section { padding:20px; display:flex; flex-direction:column; gap:16px; }
+.section-label { font-family:'Syne',sans-serif; font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+.content-types { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.ct-btn {
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:14px 12px; cursor:pointer; text-align:center; transition:all 0.2s;
+}
+.ct-btn:active { border-color:var(--gold); background:rgba(245,166,35,0.08); }
+.ct-btn .ct-icon { font-size:1.4rem; margin-bottom:6px; }
+.ct-btn .ct-label { font-family:'Syne',sans-serif; font-size:0.75rem; font-weight:600; color:var(--text); }
+.ct-btn .ct-sub { font-size:0.65rem; color:var(--muted); margin-top:2px; }
+
+.gen-area {
+  background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden;
+}
+.gen-label { padding:14px 16px 0; font-family:'Syne',sans-serif; font-size:0.72rem; color:var(--muted); letter-spacing:1px; text-transform:uppercase; }
+.gen-inp {
+  width:100%; background:transparent; border:none; padding:12px 16px;
+  color:var(--text); font-size:0.85rem; font-family:'DM Sans',sans-serif;
+  outline:none; resize:none; min-height:80px;
+}
+.gen-footer { padding:10px 16px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.gen-hint { font-size:0.7rem; color:var(--muted); }
+.gen-btn {
+  background:var(--gold); color:var(--black); font-family:'Syne',sans-serif;
+  font-weight:700; font-size:0.8rem; border:none; border-radius:10px;
+  padding:8px 18px; cursor:pointer;
+}
+.gen-btn:active { background:#C87D0E; }
+.result-box {
+  background:var(--card2); border:1px solid var(--border); border-radius:14px;
+  padding:16px; font-size:0.85rem; line-height:1.6; display:none;
+  white-space:pre-wrap;
+}
+.result-box.show { display:block; animation:fadeUp 0.3s ease; }
+.copy-btn {
+  margin-top:10px; background:transparent; border:1px solid var(--border);
+  color:var(--text); font-size:0.75rem; padding:8px 16px; border-radius:8px;
+  cursor:pointer; width:100%;
+}
+.copy-btn:active { background:var(--border); }
+
+/* ===== EBOOKS ===== */
+.ebooks-section { padding:16px; display:flex; flex-direction:column; gap:10px; }
+.ebook-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:16px; display:flex; align-items:center; gap:14px;
+}
+.ebook-icon { width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+.ebook-info { flex:1; min-width:0; }
+.ebook-title { font-family:'Syne',sans-serif; font-size:0.82rem; font-weight:600; line-height:1.3; margin-bottom:3px; }
+.ebook-price { color:var(--gold); font-family:'Syne',sans-serif; font-weight:700; font-size:0.85rem; }
+.ebook-buy {
+  background:var(--gold); color:var(--black); border:none; border-radius:8px;
+  padding:8px 12px; font-size:0.72rem; font-family:'Syne',sans-serif; font-weight:700;
+  cursor:pointer; flex-shrink:0;
+}
+.ebook-buy:active { background:#C87D0E; }
+
+/* ===== VIP ===== */
+.vip-section { padding:20px; display:flex; flex-direction:column; gap:16px; }
+.vip-hero { text-align:center; padding:16px 0; }
+.vip-hero h3 { font-family:'Syne',sans-serif; font-size:1.3rem; font-weight:800; margin-bottom:6px; }
+.vip-hero p { color:var(--muted); font-size:0.82rem; }
+.vip-cards { display:flex; flex-direction:column; gap:10px; }
+.vip-card {
+  background:var(--card); border:1px solid var(--border); border-radius:16px;
+  padding:18px; position:relative; overflow:hidden;
+}
+.vip-card.recommended { border-color:var(--gold); }
+.vip-card.recommended::before {
+  content:'⭐ RECOMMANDÉ';
+  position:absolute; top:0; right:0;
+  background:var(--gold); color:var(--black);
+  font-size:0.58rem; font-family:'Syne',sans-serif; font-weight:800;
+  padding:4px 10px; border-bottom-left-radius:10px; letter-spacing:1px;
+}
+.vip-tier { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.vip-tier-icon { font-size:1.6rem; }
+.vip-tier-name { font-family:'Syne',sans-serif; font-weight:800; font-size:1rem; }
+.vip-tier-price { font-family:'Syne',sans-serif; font-weight:700; color:var(--gold); font-size:1.1rem; margin-left:auto; }
+.vip-features { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+.vip-feature { font-size:0.78rem; color:var(--muted); display:flex; align-items:center; gap:6px; }
+.vip-feature::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
+.vip-unlock-btn {
+  width:100%; background:var(--gold); color:var(--black);
+  font-family:'Syne',sans-serif; font-weight:700; font-size:0.88rem;
+  border:none; border-radius:12px; padding:13px; cursor:pointer;
+}
+.vip-unlock-btn:active { background:#C87D0E; }
+
+/* CODE INPUT */
+.code-section {
+  margin:0 20px; background:var(--card); border:1px solid var(--border);
+  border-radius:16px; padding:18px;
+}
+.code-section h4 { font-family:'Syne',sans-serif; font-size:0.88rem; font-weight:700; margin-bottom:12px; }
+.code-inp-wrap { display:flex; gap:8px; }
+.code-inp {
+  flex:1; background:var(--dark); border:1px solid var(--border);
+  border-radius:10px; padding:10px 14px; color:var(--text);
+  font-size:0.9rem; font-family:'Syne',sans-serif; letter-spacing:2px;
+  outline:none; text-transform:uppercase;
+}
+.code-inp:focus { border-color:var(--gold); }
+.code-btn {
+  background:var(--gold); color:var(--black); border:none; border-radius:10px;
+  padding:10px 16px; font-family:'Syne',sans-serif; font-weight:700;
+  font-size:0.82rem; cursor:pointer;
+}
+
+/* ===== ADMIN ===== */
+.admin-section { padding:20px; display:flex; flex-direction:column; gap:16px; }
+.admin-login { display:flex; flex-direction:column; gap:12px; }
+.admin-title { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:800; margin-bottom:4px; }
+.admin-inp {
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:12px 16px; color:var(--text); font-size:1rem; font-family:'Syne',sans-serif;
+  letter-spacing:4px; outline:none; text-align:center;
+}
+.admin-inp:focus { border-color:var(--gold); }
+.admin-btn {
+  background:var(--gold); color:var(--black); font-family:'Syne',sans-serif;
+  font-weight:700; border:none; border-radius:12px; padding:14px; cursor:pointer; font-size:0.9rem;
+}
+.admin-panel { display:none; flex-direction:column; gap:14px; }
+.admin-panel.show { display:flex; }
+.admin-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; }
+.admin-card h4 { font-family:'Syne',sans-serif; font-size:0.85rem; font-weight:700; margin-bottom:12px; color:var(--gold); }
+.tier-select {
+  width:100%; background:var(--dark); border:1px solid var(--border);
+  border-radius:10px; padding:10px 14px; color:var(--text);
+  font-family:'DM Sans',sans-serif; font-size:0.85rem; outline:none; margin-bottom:10px;
+}
+.generated-code {
+  background:var(--dark); border:1px solid var(--gold); border-radius:10px;
+  padding:14px; text-align:center; font-family:'Syne',sans-serif;
+  font-size:1.4rem; font-weight:800; color:var(--gold); letter-spacing:4px;
+  display:none; margin-top:10px;
+}
+.generated-code.show { display:block; animation:fadeUp 0.3s ease; }
+.stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.stat-item { background:var(--dark); border-radius:10px; padding:12px; text-align:center; }
+.stat-num { font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:800; color:var(--gold); }
+.stat-label { font-size:0.68rem; color:var(--muted); margin-top:2px; }
+
+/* MODAL */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:1000;
+  display:none; align-items:flex-end; justify-content:center;
+}
+.modal-overlay.open { display:flex; }
+.modal {
+  background:var(--dark); border:1px solid var(--border);
+  border-radius:20px 20px 0 0; width:100%; max-width:500px;
+  padding:24px 20px 32px; animation:slideUp 0.3s ease;
+}
+.modal h3 { font-family:'Syne',sans-serif; font-size:1rem; font-weight:800; margin-bottom:8px; }
+.modal p { color:var(--muted); font-size:0.82rem; line-height:1.6; margin-bottom:16px; }
+.modal-btns { display:flex; gap:10px; }
+.modal-btn {
+  flex:1; padding:13px; border-radius:12px; border:none;
+  font-family:'Syne',sans-serif; font-weight:700; font-size:0.85rem; cursor:pointer;
+}
+.modal-btn.primary { background:var(--gold); color:var(--black); }
+.modal-btn.secondary { background:var(--card); color:var(--text); border:1px solid var(--border); }
+.payment-methods { display:flex; flex-direction:column; gap:8px; margin-bottom:16px; }
+.pay-method {
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:12px 14px; display:flex; align-items:center; gap:10px; font-size:0.82rem;
+}
+.pay-method strong { font-family:'Syne',sans-serif; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+@keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+@keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div class="screen active" id="splash">
+  <div class="splash-logo">BANI<span>·AI</span><br>WORLD</div>
+  <div class="splash-sub">Assistant Business Africain</div>
+  <button class="splash-btn" onclick="startApp()">Commencer →</button>
+  <div class="splash-version">V3 · Brazzaville, Congo</div>
+</div>
+
+<!-- MAIN APP -->
+<div class="screen" id="mainApp">
+  <div class="app-header">
+    <div class="app-logo">BANI·AI</div>
+    <div class="vip-badge free" id="vipBadge">🔓 Gratuit</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('home')">🏠 Accueil</button>
+    <button class="tab-btn" onclick="switchTab('chat')">💬 Chat IA</button>
+    <button class="tab-btn" onclick="switchTab('content')">✍️ Contenu</button>
+    <button class="tab-btn" onclick="switchTab('ebooks')">📚 Ebooks</button>
+    <button class="tab-btn" onclick="switchTab('vip')">👑 VIP</button>
+    <button class="tab-btn" onclick="switchTab('admin')">⚙️ Admin</button>
+  </div>
+
+  <!-- HOME TAB -->
+  <div class="tab-content active" id="tab-home">
+    <div class="home-hero">
+      <h2>Ton assistant<br><em>business africain</em></h2>
+      <p>IA · Contenu · Ebooks · Coaching</p>
+    </div>
+
+    <div class="free-counter">
+      <div class="counter-icon">⚡</div>
+      <div class="counter-info">
+        <p>Messages gratuits aujourd'hui</p>
+        <strong id="counterText">3 / 3 restants</strong>
+        <div class="counter-bar"><div class="counter-fill" id="counterFill" style="width:100%"></div></div>
+      </div>
+    </div>
+
+    <div style="padding:0 20px 12px">
+      <div class="section-label">Services disponibles</div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" onclick="switchTab('chat')">
+        <div class="s-icon">💬</div>
+        <div class="s-name">Chat IA</div>
+        <div class="s-desc">Pose tes questions business</div>
+      </div>
+      <div class="service-card locked" onclick="requireVIP('Générateur de Contenu')">
+        <div class="lock-overlay">VIP</div>
+        <div class="s-icon">✍️</div>
+        <div class="s-name">Contenu IA</div>
+        <div class="s-desc">Posts Facebook, WhatsApp...</div>
+      </div>
+      <div class="service-card locked" onclick="requireVIP('Coach Business IA')">
+        <div class="lock-overlay">VIP</div>
+        <div class="s-icon">🎯</div>
+        <div class="s-name">Coach Business</div>
+        <div class="s-desc">Plan & conseils personnalisés</div>
+      </div>
+      <div class="service-card" onclick="switchTab('ebooks')">
+        <div class="s-icon">📚</div>
+        <div class="s-name">Ebooks</div>
+        <div class="s-desc">8 guides premium</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAT TAB -->
+  <div class="tab-content" id="tab-chat">
+    <div class="chat-container">
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg bot">👋 Bonjour ! Je suis BANI·AI, ton assistant business africain.<br><br>Pose-moi tes questions sur le business, le digital, la vente ou l'entrepreneuriat. Je suis là pour t'aider ! 🚀</div>
+      </div>
+      <div class="chat-input-wrap">
+        <input type="text" class="chat-inp" id="chatInput" placeholder="Pose ta question..." onkeypress="handleChatKey(event)">
+        <button class="send-btn" onclick="sendChat()">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT TAB -->
+  <div class="tab-content" id="tab-content">
+    <div class="content-section">
+      <div>
+        <div class="section-label">Type de contenu</div>
+        <div class="content-types">
+          <div class="ct-btn" onclick="selectContentType('Post Facebook')">
+            <div class="ct-icon">📘</div>
+            <div class="ct-label">Post Facebook</div>
+            <div class="ct-sub">Accrocheur & viral</div>
+          </div>
+          <div class="ct-btn" onclick="selectContentType('Message WhatsApp')">
+            <div class="ct-icon">💬</div>
+            <div class="ct-label">Message WhatsApp</div>
+            <div class="ct-sub">Vente & relance</div>
+          </div>
+          <div class="ct-btn" onclick="selectContentType('Script de vente')">
+            <div class="ct-icon">🎯</div>
+            <div class="ct-label">Script de vente</div>
+            <div class="ct-sub">Convaincre le client</div>
+          </div>
+          <div class="ct-btn" onclick="selectContentType('Description produit')">
+            <div class="ct-icon">🛒</div>
+            <div class="ct-label">Description produit</div>
+            <div class="ct-sub">Pour ta boutique</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gen-area">
+        <div class="gen-label" id="genLabel">Post Facebook</div>
+        <textarea class="gen-inp" id="genInp" placeholder="Décris ton produit/service... Ex: Je vends des pagnes à Brazzaville, prix 5000 FCFA"></textarea>
+        <div class="gen-footer">
+          <span class="gen-hint" id="genHint">👑 VIP requis</span>
+          <button class="gen-btn" onclick="generateContent()">Générer ✨</button>
+        </div>
+      </div>
+
+      <div class="result-box" id="resultBox"></div>
+      <button class="copy-btn" id="copyBtn" style="display:none" onclick="copyResult()">📋 Copier le contenu</button>
+    </div>
+  </div>
+
+  <!-- EBOOKS TAB -->
+  <div class="tab-content" id="tab-ebooks">
+    <div style="padding:16px 20px 8px">
+      <div class="section-label">8 ebooks premium</div>
+    </div>
+    <div class="ebooks-section">
+      <div class="ebook-card">
+        <div class="ebook-icon" style="background:rgba(255,0,80,0.1)">🎵</div>
+        <div class="ebook-info">
+          <div class="ebook-title">Monétisation TikTok en Afrique</div>
+          <div class="ebook-price">5 000 FCFA</div>
+        </div>
+        <button class="ebook-buy" onclick="buyEbook()">Acheter</button>
+      </div>
+      <div class="ebook-card">
+        <div class="ebook-icon" style="background:rgba(0,100,255,0.1)">💳</div>
+        <div class="ebook-info">
+          <div class="ebook-title">Créer un compte PayPal en Afrique</div>
+          <div class="ebook-price">4 900 FCFA</div>
+        </div>
+        <button class="ebook-buy" onclick="buyEbook()">Acheter</button>
+      </div>
+      <div class="ebook-card">
+        <div class="ebook-icon" style="background:rgba(0,200,100,0.1)">📱</div>
+        <div class="ebook-info">
+          <div class="ebook-title">Comment créer une application mobile</div>
+          <div class="ebook-price">5 000 FCFA</div>
+        </div>
+        <button class="ebook-buy" onclick="buyEbook()">Acheter</button>
+      </div>
+      <div class="ebook-card">
+        <div class="ebook-icon" style="background:rgba(245,166,35,0.1)">🛒</div>
+        <div class="ebook-info">
+          <div class="ebook-title">Guide vente sur Chariow</div>
+          <div class="ebook-price">6 500 FCFA</div>
+        </div>
+        <button class="ebook-buy" onclick="buyEbook()">Acheter</button>
+      </div>
+      <div class="ebook-card">
+        <div class="ebook-icon" style="background:rgba(255,100,0,0.1)">💰</div>
+        <div class="ebook-info">
+          <div class="ebook-title">Comment gagner de l'argent (TikTok)</div>
+          <div class="ebook-price">2 100 FCFA</div>
+        </div>
+        <button class="ebook-buy" onclick="buyEbook()">Acheter</button>
+      </div>
+      <div class="ebook-card">
+        <div class="ebook-icon" style="background:rgba(0,200,150,0.1)">📈</div>
+        <div class="ebook-info">
+          <div class="ebook-title">Trading Réussi — Devenir trader rentable</div>
+          <div class="ebook-price">6 500 FCFA</div>
+        </div>
+        <button class="ebook-buy" onclick="buyEbook()">Acheter</button>
+      </div>
+      <div class="ebook-card">
+        <div class="ebook-icon" style="background:rgba(37,211,102,0.1)">💬</div>
+        <div class="ebook-info">
+          <div class="ebook-title">Devenir riche avec WhatsApp Business</div>
+          <div class="ebook-price">5 000 FCFA</div>
+        </div>
+        <button class="ebook-buy" onclick="buyEbook()">Acheter</button>
+      </div>
+      <div class="ebook-card">
+        <div class="ebook-icon" style="background:rgba(247,147,26,0.1)">₿</div>
+        <div class="ebook-info">
+          <div class="ebook-title">Débutant en Crypto ?</div>
+          <div class="ebook-price">6 500 FCFA</div>
+        </div>
+        <button class="ebook-buy" onclick="buyEbook()">Acheter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIP TAB -->
+  <div class="tab-content" id="tab-vip">
+    <div class="vip-section">
+      <div class="vip-hero">
+        <h3>👑 Passe VIP</h3>
+        <p>Débloque tous les services premium de BANI·AI</p>
+      </div>
+
+      <div class="vip-cards">
+        <div class="vip-card">
+          <div class="vip-tier">
+            <div class="vip-tier-icon">🥉</div>
+            <div class="vip-tier-name">STARTER</div>
+            <div class="vip-tier-price">1 000 FCFA/mois</div>
+          </div>
+          <div class="vip-features">
+            <div class="vip-feature">20 messages IA par jour</div>
+            <div class="vip-feature">5 générations de contenu/jour</div>
+            <div class="vip-feature">Accès boutique ebooks</div>
+          </div>
+          <button class="vip-unlock-btn" onclick="showPayment('STARTER', '1 000 FCFA')">Obtenir Starter</button>
+        </div>
+
+        <div class="vip-card">
+          <div class="vip-tier">
+            <div class="vip-tier-icon">🥈</div>
+            <div class="vip-tier-name">BASIC</div>
+            <div class="vip-tier-price">2 500 FCFA/mois</div>
+          </div>
+          <div class="vip-features">
+            <div class="vip-feature">50 messages IA par jour</div>
+            <div class="vip-feature">Contenu illimité</div>
+            <div class="vip-feature">Coach business IA</div>
+          </div>
+          <button class="vip-unlock-btn" onclick="showPayment('BASIC', '2 500 FCFA')">Obtenir Basic</button>
+        </div>
+
+        <div class="vip-card recommended">
+          <div class="vip-tier">
+            <div class="vip-tier-icon">🥇</div>
+            <div class="vip-tier-name">GOLD</div>
+            <div class="vip-tier-price">5 000 FCFA/mois</div>
+          </div>
+          <div class="vip-features">
+            <div class="vip-feature">Messages IA illimités</div>
+            <div class="vip-feature">Tous services inclus</div>
+            <div class="vip-feature">1 ebook offert</div>
+            <div class="vip-feature">Coach business IA avancé</div>
+          </div>
+          <button class="vip-unlock-btn" onclick="showPayment('GOLD', '5 000 FCFA')">Obtenir Gold</button>
+        </div>
+
+        <div class="vip-card">
+          <div class="vip-tier">
+            <div class="vip-tier-icon">💎</div>
+            <div class="vip-tier-name">ELITE</div>
+            <div class="vip-tier-price">10 000 FCFA/mois</div>
+          </div>
+          <div class="vip-features">
+            <div class="vip-feature">Tout illimité</div>
+            <div class="vip-feature">Tous ebooks inclus</div>
+            <div class="vip-feature">Support WhatsApp direct</div>
+            <div class="vip-feature">Coaching personnalisé mensuel</div>
+          </div>
+          <button class="vip-unlock-btn" onclick="showPayment('ELITE', '10 000 FCFA')">Obtenir Elite</button>
+        </div>
+      </div>
+
+      <div class="code-section">
+        <h4>🔑 Tu as déjà un code VIP ?</h4>
+        <div class="code-inp-wrap">
+          <input type="text" class="code-inp" id="vipCodeInp" placeholder="XXXXXXXX" maxlength="12">
+          <button class="code-btn" onclick="activateCode()">Activer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN TAB -->
+  <div class="tab-content" id="tab-admin">
+    <div class="admin-section">
+      <div class="admin-login" id="adminLogin">
+        <div class="admin-title">⚙️ Dashboard Admin</div>
+        <p style="color:var(--muted);font-size:0.82rem">Accès réservé à Baniakissa Corporation</p>
+        <input type="password" class="admin-inp" id="adminPin" placeholder="PIN" maxlength="4" onkeypress="handleAdminKey(event)">
+        <button class="admin-btn" onclick="adminLogin()">Accéder →</button>
+      </div>
+
+      <div class="admin-panel" id="adminPanel">
+        <div class="admin-card">
+          <h4>📊 Statistiques</h4>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-num" id="statUsers">0</div>
+              <div class="stat-label">VIP actifs</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num" id="statCodes">0</div>
+              <div class="stat-label">Codes générés</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num" id="statRevenue">0</div>
+              <div class="stat-label">FCFA estimés</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num" id="statMsgs">0</div>
+              <div class="stat-label">Messages chat</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h4>🔑 Générer un code VIP</h4>
+          <select class="tier-select" id="tierSelect">
+            <option value="STARTER">🥉 STARTER — 1 000 FCFA/mois</option>
+            <option value="BASIC">🥈 BASIC — 2 500 FCFA/mois</option>
+            <option value="GOLD">🥇 GOLD — 5 000 FCFA/mois</option>
+            <option value="ELITE">💎 ELITE — 10 000 FCFA/mois</option>
+          </select>
+          <button class="admin-btn" onclick="generateCode()">Générer le code</button>
+          <div class="generated-code" id="generatedCode"></div>
+          <button class="copy-btn" id="copyCodeBtn" style="display:none;margin-top:8px" onclick="copyCode()">📋 Copier le code</button>
+        </div>
+
+        <div class="admin-card">
+          <h4>📋 Codes actifs</h4>
+          <div id="codesList" style="font-size:0.78rem;color:var(--muted)">Aucun code généré</div>
+        </div>
+
+        <button class="admin-btn" style="background:var(--card);color:var(--red);border:1px solid var(--border)" onclick="adminLogout()">Déconnexion</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PAIEMENT -->
+<div class="modal-overlay" id="payModal">
+  <div class="modal">
+    <h3 id="modalTitle">Passer au plan GOLD</h3>
+    <p id="modalDesc">Envoie le paiement puis envoie le screenshot sur WhatsApp pour recevoir ton code VIP.</p>
+    <div class="payment-methods">
+      <div class="pay-method">📱 <div><strong>Airtel Money</strong><br><span style="color:var(--muted);font-size:0.75rem">*128# → +242 056 614 112</span></div></div>
+      <div class="pay-method">📲 <div><strong>MTN Mobile Money</strong><br><span style="color:var(--muted);font-size:0.75rem">*105# → +242 068 805 017</span></div></div>
+      <div class="pay-method">₿ <div><strong>USDT TRC20</strong><br><span style="color:var(--muted);font-size:0.75rem;word-break:break-all">TAuPSLyuwSmEkd6c5S4YEvUydyNLwmxtLg</span></div></div>
+    </div>
+    <div class="modal-btns">
+      <button class="modal-btn secondary" onclick="closeModal()">Fermer</button>
+      <button class="modal-btn primary" onclick="openWhatsApp()">WhatsApp ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL SERVICE LOCK -->
+<div class="modal-overlay" id="lockModal">
+  <div class="modal">
+    <h3 id="lockTitle">🔒 Service VIP</h3>
+    <p id="lockDesc">Ce service est réservé aux membres VIP. Passe à un abonnement pour y accéder.</p>
+    <div class="modal-btns">
+      <button class="modal-btn secondary" onclick="closeLockModal()">Fermer</button>
+      <button class="modal-btn primary" onclick="goVIP()">Voir les plans 👑</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== STATE =====
+let vipTier = localStorage.getItem('bani_vip') || 'FREE';
+let freeMessages = parseInt(localStorage.getItem('bani_free_msgs') || '3');
+let lastMsgDate = localStorage.getItem('bani_msg_date') || '';
+let chatHistory = [];
+let selectedContentType = 'Post Facebook';
+let generatedCodes = JSON.parse(localStorage.getItem('bani_codes') || '[]');
+let stats = JSON.parse(localStorage.getItem('bani_stats') || '{"users":0,"codes":0,"msgs":0}');
+let currentPaymentTier = '';
+
+const VALID_CODES = {
+  'STARTER2025': 'STARTER', 'BASIC2025': 'BASIC',
+  'GOLD2025': 'GOLD', 'ELITE2025': 'ELITE'
+};
+
+const TIER_PRICES = { STARTER: 1000, BASIC: 2500, GOLD: 5000, ELITE: 10000 };
+
+// ===== INIT =====
+function init() {
+  const today = new Date().toDateString();
+  if (lastMsgDate !== today) {
+    freeMessages = 3;
+    localStorage.setItem('bani_free_msgs', '3');
+    localStorage.setItem('bani_msg_date', today);
+  }
+  updateVIPBadge();
+  updateCounter();
+}
+
+function startApp() {
+  document.getElementById('splash').classList.remove('active');
+  document.getElementById('mainApp').classList.add('active');
+  init();
+}
+
+// ===== TABS =====
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  const btns = document.querySelectorAll('.tab-btn');
+  const tabMap = ['home','chat','content','ebooks','vip','admin'];
+  const idx = tabMap.indexOf(tab);
+  if (idx >= 0) btns[idx].classList.add('active');
+}
+
+// ===== VIP =====
+function updateVIPBadge() {
+  const badge = document.getElementById('vipBadge');
+  const icons = { FREE:'🔓', STARTER:'🥉', BASIC:'🥈', GOLD:'🥇', ELITE:'💎' };
+  badge.textContent = icons[vipTier] + ' ' + vipTier;
+  badge.className = 'vip-badge' + (vipTier === 'FREE' ? ' free' : '');
+}
+
+function isVIP() { return vipTier !== 'FREE'; }
+
+function requireVIP(service) {
+  document.getElementById('lockTitle').textContent = '🔒 ' + service;
+  document.getElementById('lockDesc').textContent = `Le service "${service}" est réservé aux membres VIP. Choisis un plan pour débloquer l'accès immédiatement.`;
+  document.getElementById('lockModal').classList.add('open');
+}
+
+function closeLockModal() { document.getElementById('lockModal').classList.remove('open'); }
+function goVIP() { closeLockModal(); switchTab('vip'); }
+
+function activateCode() {
+  const code = document.getElementById('vipCodeInp').value.trim().toUpperCase();
+  // Check generated codes
+  const found = generatedCodes.find(c => c.code === code && !c.used);
+  if (found) {
+    found.used = true;
+    localStorage.setItem('bani_codes', JSON.stringify(generatedCodes));
+    vipTier = found.tier;
+    localStorage.setItem('bani_vip', vipTier);
+    stats.users++;
+    localStorage.setItem('bani_stats', JSON.stringify(stats));
+    updateVIPBadge();
+    addChatMessage('system', `✅ VIP ${vipTier} activé ! Tous tes services sont débloqués.`);
+    switchTab('chat');
+    return;
+  }
+  // Check hardcoded codes
+  if (VALID_CODES[code]) {
+    vipTier = VALID_CODES[code];
+    localStorage.setItem('bani_vip', vipTier);
+    updateVIPBadge();
+    addChatMessage('system', `✅ VIP ${vipTier} activé ! Tous tes services sont débloqués.`);
+    switchTab('chat');
+    return;
+  }
+  alert('❌ Code invalide ou déjà utilisé.');
+}
+
+// ===== COUNTER =====
+function updateCounter() {
+  const el = document.getElementById('counterText');
+  const fill = document.getElementById('counterFill');
+  if (isVIP()) {
+    el.textContent = 'Illimité ✨';
+    fill.style.width = '100%';
+    fill.style.background = 'var(--green)';
+  } else {
+    el.textContent = freeMessages + ' / 3 restants';
+    fill.style.width = (freeMessages / 3 * 100) + '%';
+    fill.style.background = freeMessages > 0 ? 'var(--gold)' : 'var(--red)';
+  }
+}
+
+// ===== CHAT =====
+const CHAT_SYSTEM = `Tu es BANI·AI, l'assistant business africain de Baniakissa Corporation basé à Brazzaville, Congo.
+Tu aides les entrepreneurs africains avec : business, vente, marketing digital, entrepreneuriat, revenus en ligne.
+Réponds toujours en français. Sois concis (3-4 phrases max), pratique et motivant.
+Tu connais le marché congolais. Donne des conseils adaptés à l'Afrique.
+Ne parle pas de sujets non liés au business/entrepreneuriat.`;
+
+async function sendChat() {
+  const inp = document.getElementById('chatInput');
+  const text = inp.value.trim();
+  if (!text) return;
+
+  if (!isVIP() && freeMessages <= 0) {
+    addChatMessage('bot', '⚠️ Tu as épuisé tes 3 messages gratuits aujourd\'hui. Passe VIP pour continuer sans limite ! 👑');
+    switchTab('vip');
+    return;
+  }
+
+  inp.value = '';
+  addChatMessage('user', text);
+  chatHistory.push({ role:'user', content:text });
+
+  if (!isVIP()) {
+    freeMessages--;
+    localStorage.setItem('bani_free_msgs', freeMessages);
+    updateCounter();
+  }
+
+  stats.msgs++;
+  localStorage.setItem('bani_stats', JSON.stringify(stats));
+
+  showTyping();
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:1000,
+        system: CHAT_SYSTEM, messages: chatHistory
+      })
+    });
+    const data = await res.json();
+    removeTyping();
+    const reply = data.content?.[0]?.text || 'Erreur. Réessaie.';
+    addChatMessage('bot', reply);
+    chatHistory.push({ role:'assistant', content:reply });
+  } catch(e) {
+    removeTyping();
+    addChatMessage('bot', '❌ Erreur de connexion. Vérifie ta connexion et réessaie.');
+  }
+}
+
+function addChatMessage(type, text) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'msg ' + type;
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'typing-wrap'; div.id = 'typing';
+  div.innerHTML = '<div class="dots"><span></span><span></span><span></span></div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing');
+  if(t) t.remove();
+}
+
+function handleChatKey(e) { if(e.key==='Enter') sendChat(); }
+
+// ===== CONTENT GENERATOR =====
+function selectContentType(type) {
+  selectedContentType = type;
+  document.getElementById('genLabel').textContent = type;
+  document.querySelectorAll('.ct-btn').forEach(b => b.style.borderColor = 'var(--border)');
+  event.currentTarget.style.borderColor = 'var(--gold)';
+  document.getElementById('resultBox').classList.remove('show');
+  document.getElementById('copyBtn').style.display = 'none';
+}
+
+async function generateContent() {
+  if (!isVIP()) { requireVIP('Générateur de Contenu'); return; }
+  const prompt = document.getElementById('genInp').value.trim();
+  if (!prompt) { alert('Décris ton produit ou service d\'abord.'); return; }
+
+  const btn = document.querySelector('.gen-btn');
+  btn.textContent = '...'; btn.disabled = true;
+
+  const systemContent = `Tu es un expert en marketing digital africain. 
+Génère du contenu ${selectedContentType} percutant pour entrepreneurs africains (Congo, Afrique).
+Contenu en français, adapté au marché africain. Direct, accrocheur, avec émojis.
+Pour Facebook : 3-5 lignes max + call to action.
+Pour WhatsApp : court, chaleureux, personnel.
+Pour script de vente : structuré en 3 parties (accroche, valeur, action).
+Pour description produit : bénéfices clairs, prix, comment acheter.`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:1000,
+        system: systemContent,
+        messages:[{ role:'user', content:`Crée un(e) ${selectedContentType} pour: ${prompt}` }]
+      })
+    });
+    const data = await res.json();
+    const result = data.content?.[0]?.text || 'Erreur.';
+    const box = document.getElementById('resultBox');
+    box.textContent = result;
+    box.classList.add('show');
+    document.getElementById('copyBtn').style.display = 'block';
+  } catch(e) {
+    alert('Erreur de connexion.');
+  }
+
+  btn.textContent = 'Générer ✨'; btn.disabled = false;
+}
+
+function copyResult() {
+  const text = document.getElementById('resultBox').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById('copyBtn').textContent = '✅ Copié !';
+    setTimeout(() => document.getElementById('copyBtn').textContent = '📋 Copier le contenu', 2000);
+  });
+}
+
+// ===== EBOOKS =====
+function buyEbook() {
+  document.getElementById('modalTitle').textContent = '🛒 Acheter cet ebook';
+  document.getElementById('modalDesc').textContent = 'Envoie le paiement correspondant puis contacte-nous sur WhatsApp avec ton screenshot pour recevoir ton ebook immédiatement.';
+  document.getElementById('payModal').classList.add('open');
+}
+
+// ===== PAYMENT =====
+function showPayment(tier, price) {
+  currentPaymentTier = tier;
+  document.getElementById('modalTitle').textContent = `👑 Passer au plan ${tier}`;
+  document.getElementById('modalDesc').textContent = `Montant : ${price}/mois. Envoie le paiement puis envoie le screenshot sur WhatsApp. Tu recevras ton code VIP rapidement.`;
+  document.getElementById('payModal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('payModal').classList.remove('open'); }
+
+function openWhatsApp() {
+  const msg = encodeURIComponent(`Bonjour ! Je viens de payer pour le plan VIP ${currentPaymentTier} de BANI·AI WORLD. Voici mon screenshot de paiement. Merci de m'envoyer mon code d'activation.`);
+  window.open(`https://wa.me/242068805017?text=${msg}`, '_blank');
+  closeModal();
+}
+
+// ===== ADMIN =====
+function adminLogin() {
+  const pin = document.getElementById('adminPin').value;
+  if (pin === '2408') {
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminPanel').classList.add('show');
+    updateAdminStats();
+    updateCodesList();
+  } else {
+    alert('❌ PIN incorrect');
+    document.getElementById('adminPin').value = '';
+  }
+}
+
+function handleAdminKey(e) { if(e.key==='Enter') adminLogin(); }
+
+function adminLogout() {
+  document.getElementById('adminLogin').style.display = 'flex';
+  document.getElementById('adminPanel').classList.remove('show');
+  document.getElementById('adminPin').value = '';
+}
+
+function generateCode() {
+  const tier = document.getElementById('tierSelect').value;
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = tier.substring(0,3);
+  for(let i=0;i<6;i++) code += chars[Math.floor(Math.random()*chars.length)];
+
+  generatedCodes.push({ code, tier, used:false, date: new Date().toLocaleDateString('fr-FR') });
+  localStorage.setItem('bani_codes', JSON.stringify(generatedCodes));
+
+  stats.codes++;
+  const revenue = generatedCodes.filter(c=>c.used).reduce((a,c)=>a+TIER_PRICES[c.tier],0);
+  localStorage.setItem('bani_stats', JSON.stringify(stats));
+
+  document.getElementById('generatedCode').textContent = code;
+  document.getElementById('generatedCode').classList.add('show');
+  document.getElementById('copyCodeBtn').style.display = 'block';
+  updateAdminStats();
+  updateCodesList();
+}
+
+function copyCode() {
+  const code = document.getElementById('generatedCode').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    document.getElementById('copyCodeBtn').textContent = '✅ Copié !';
+    setTimeout(() => document.getElementById('copyCodeBtn').textContent = '📋 Copier le code', 2000);
+  });
+}
+
+function updateAdminStats() {
+  const usedCodes = generatedCodes.filter(c=>c.used);
+  const revenue = usedCodes.reduce((a,c)=>a+TIER_PRICES[c.tier],0);
+  document.getElementById('statUsers').textContent = usedCodes.length;
+  document.getElementById('statCodes').textContent = generatedCodes.length;
+  document.getElementById('statRevenue').textContent = revenue.toLocaleString();
+  document.getElementById('statMsgs').textContent = stats.msgs || 0;
+}
+
+function updateCodesList() {
+  const el = document.getElementById('codesList');
+  if (generatedCodes.length === 0) { el.textContent = 'Aucun code généré'; return; }
+  el.innerHTML = generatedCodes.slice(-5).reverse().map(c =>
+    `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)">
+      <span style="font-family:'Syne',sans-serif;letter-spacing:1px;color:${c.used?'var(--muted)':'var(--gold)'}">${c.code}</span>
+      <span style="color:var(--muted)">${c.tier} · ${c.used?'✅ Utilisé':'⏳ En attente'}</span>
+    </div>`
+  ).join('');
+}
+
+init();
+</script>
+</body>
+</html>
